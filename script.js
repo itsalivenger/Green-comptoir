@@ -1,6 +1,10 @@
 // Green Comptoir Landing Page — Main Script
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Dynamic copyright year
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   // 1. Scroll reveal observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
