@@ -40,14 +40,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const windowHeight = window.innerHeight;
 
     // === PHASE 1: READ ALL GEOMETRIES FIRST (Prevents Forced Synchronous Layout / Freezing) ===
-    let timelineRect = null;
+    let timelineProgress = 0;
     let itemStates = [];
-    if (timeline && progressBar) {
-      timelineRect = timeline.getBoundingClientRect();
+    if (timeline && progressBar && timelineItems.length > 0) {
+      const viewportCenter = windowHeight * 0.50;
+      const firstItem = timelineItems[0];
+      const lastItem = timelineItems[timelineItems.length - 1];
+      const firstRect = firstItem.getBoundingClientRect();
+      const lastRect = lastItem.getBoundingClientRect();
+
+      // Node vertical centers
+      const startY = firstRect.top + (firstRect.height / 2);
+      const endY = lastRect.top + (lastRect.height / 2);
+      const travelDist = Math.max(1, endY - startY);
+
+      // Calculates how far we've scrolled the timeline through the viewport center
+      timelineProgress = ((viewportCenter - startY) / travelDist) * 100;
+      timelineProgress = Math.max(0, Math.min(100, timelineProgress));
+
       timelineItems.forEach(item => {
         const itemRect = item.getBoundingClientRect();
-        // Activate milestone as user scrolls down to it
-        const shouldBeActive = (itemRect.top + 32) < (windowHeight * 0.68);
+        const itemCenter = itemRect.top + (itemRect.height / 2);
+        // Item activates when its center reaches the viewport center
+        const shouldBeActive = itemCenter <= (viewportCenter + 25);
         itemStates.push(shouldBeActive);
       });
     }
@@ -59,17 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === PHASE 2: WRITE ALL DOM MUTATIONS ===
 
-    // 2a. Dynamic Timeline Scroll Fill
-    if (timelineRect && progressBar) {
-      const triggerStart = windowHeight * 0.72;
-      const scrolledDist = triggerStart - timelineRect.top;
-      // Total travel distance from start to last item
-      const totalDist = Math.max(1, timelineRect.height - 40);
-
-      let progress = (scrolledDist / totalDist) * 100;
-      progress = Math.max(0, Math.min(100, progress));
-
-      progressBar.style.height = progress.toFixed(1) + '%';
+    // 2a. Dynamic Timeline Scroll Fill (Smooth, centered in page while scrolling)
+    if (progressBar && timelineItems.length > 0) {
+      progressBar.style.height = timelineProgress.toFixed(1) + '%';
 
       timelineItems.forEach((item, index) => {
         if (itemStates[index]) {
