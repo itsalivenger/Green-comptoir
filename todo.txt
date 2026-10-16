@@ -1,4 +1,5 @@
-hero (figma)
-timeline in figmaa as well
-regle de jeunx from fstiima as well
-active state for the form inputs
+[x] hero (figma)
+[x] timeline in figma as well
+[x] regle de jeux from figma as well
+[ ] active state for the form inputs
+[ ] reduce max 

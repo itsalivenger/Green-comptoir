@@ -36,59 +36,57 @@
     </p>
   </div>
 
-  <!-- 2. HERO (Split-Screen 50/50) -->
+  <!-- 2. HERO (Full-screen with logo, stickers & centered headline) -->
   <section id="hero">
-    <!-- Colonne de gauche : Le conteneur de texte -->
-    <div class="hero-text-side">
-      <div class="hero-text-content">
-        <h1 class="hero-title">LE <span class="hero-hl-green">FAST-FOOD HEALTHY</span> ARRIVE ENFIN À MARRAKECH. DEVENEZ
-          L'UN DE NOS <span class="hero-hl-orange">20 'FOUNDING MEMBERS'</span> ET VIVEZ L'EXPÉRIENCE EN AVANT-PREMIÈRE.
-        </h1>
-
-        <p class="hero-paragraph">
-          Green Comptoir ouvre bientôt ses portes. Notre mission ? Réinventer la restauration rapide : Burgers
-          équilibrés, Kumpirs chauds sur-mesure, Smoothies sans sucre ajouté, et un univers pomme de terre 100% ZÉRO
-          FRITURE (tout est cuit au four !).
-        </p>
-
-        <p class="hero-paragraph">
-          Avant notre ouverture officielle au grand public, nous fermons nos portes pour une Dégustation Privée. Nous
-          recherchons nos 20 Membres Fondateurs pour tester notre carte finale et devenir les tout premiers ambassadeurs
-          de l'expérience Green Comptoir.
-        </p>
-
-        <div class="hero-cta-wrapper">
-          <a href="#formulaire" class="btn-hero-action" id="hero-cta-btn">
-            Je postule maintenant
-          </a>
-        </div>
-      </div>
+    <!-- Logo — top left -->
+    <div class="hero-logo-wrap">
+      <img src="images/Logo.svg" alt="Green Comptoir" class="hero-logo" />
     </div>
 
-    <!-- Colonne de droite : L'image d'illustration -->
-    <div class="hero-image-side">
-      <div class="hero-img-box">
-        <img src="images/Hero.svg" onerror="this.onerror=null; this.src='Hero.svg';"
-          alt="Green Comptoir" loading="eager" />
+    <!-- Sticker top-right: chips -->
+    <div class="hero-sticker hero-sticker--tr">
+      <img src="images/stickers/chips.svg" alt="" aria-hidden="true" />
+    </div>
+
+    <!-- Sticker bottom-right: box_burgers -->
+    <div class="hero-sticker hero-sticker--br">
+      <img src="images/stickers/box_burgers.svg" alt="" aria-hidden="true" />
+    </div>
+
+    <!-- Sticker bottom-left: burger_box -->
+    <div class="hero-sticker hero-sticker--bl">
+      <img src="images/stickers/burger_box.svg" alt="" aria-hidden="true" />
+    </div>
+
+    <!-- Centered headline -->
+    <div class="hero-center-content">
+      <h1 class="hero-title">
+        LE <span class="hero-hl-green">FAST-FOOD HEALTHY</span> ARRIVE ENFIN À MARRAKECH.
+        DEVENEZ L'UN DE NOS <span class="hero-hl-orange">20 'FOUNDING MEMBERS'</span>
+        ET VIVEZ L'EXPÉRIENCE EN AVANT-PREMIÈRE.
+      </h1>
+      <div class="hero-cta-wrapper">
+        <a href="#formulaire" class="btn-hero-action" id="hero-cta-btn">
+          Je postule maintenant
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 3. VIP PRIVILEGES (Timeline Alternée) -->
+  <!-- 3. VIP PRIVILEGES (Timeline with boxes on left & timeline on right) -->
   <section id="privileges">
     <div class="privileges-inner">
       <h2 class="privileges-title">
         LES PRIVILÈGES DE NOS <span class="fomo-highlight">20 FOUNDING MEMBERS :</span>
       </h2>
 
-      <!-- Timeline Alternée entre les 3 privilèges avec remplissage dynamique au scroll -->
+      <!-- Timeline : boxes à gauche, ligne et numéros à droite (centré) -->
       <div class="timeline">
         <div class="timeline-track-bg" aria-hidden="true"></div>
         <div class="timeline-progress-bar" id="timeline-progress-bar" aria-hidden="true"></div>
 
-        <!-- Privilège 1 : Gauche -->
-        <div class="timeline-item left reveal">
-          <div class="timeline-node node-gold">01</div>
+        <!-- Privilège 1 -->
+        <div class="timeline-item reveal">
           <div class="timeline-card">
             <div class="timeline-card-header">
               <span class="t-icon">🎟️</span>
@@ -100,11 +98,11 @@
                 offerts</strong>.
             </p>
           </div>
+          <div class="timeline-node">01</div>
         </div>
 
-        <!-- Privilège 2 : Droite -->
-        <div class="timeline-item right reveal reveal-delay-1">
-          <div class="timeline-node node-emerald">02</div>
+        <!-- Privilège 2 -->
+        <div class="timeline-item reveal reveal-delay-1">
           <div class="timeline-card">
             <div class="timeline-card-header">
               <span class="t-icon">👑</span>
@@ -115,11 +113,11 @@
               nous partager votre ressenti sur l'expérience globale <em>(accueil, ambiance, concept)</em>.
             </p>
           </div>
+          <div class="timeline-node">02</div>
         </div>
 
-        <!-- Privilège 3 : Gauche -->
-        <div class="timeline-item left reveal reveal-delay-2">
-          <div class="timeline-node node-orange">03</div>
+        <!-- Privilège 3 -->
+        <div class="timeline-item reveal reveal-delay-2">
           <div class="timeline-card">
             <div class="timeline-card-header">
               <span class="t-icon">🎁</span>
@@ -130,6 +128,7 @@
               remercier de nous avoir soutenus dès le premier jour.
             </p>
           </div>
+          <div class="timeline-node">03</div>
         </div>
       </div>
 
@@ -144,17 +143,21 @@
     </div>
   </section>
 
-  <!-- 4. CONDITIONS -->
+  <!-- 4. CONDITIONS (Règles du Jeu) -->
   <section id="conditions">
     <div class="conditions-inner">
-      <div class="section-label">☑ Règles du Jeu</div>
-      <h2 class="section-title">Comment valider votre place&nbsp;?<br /><span style="color:var(--emerald);">(Lisez bien
-          !)</span></h2>
-      <p class="conditions-subtitle">Pour rejoindre le cercle des Founding Members, vous devez impérativement respecter
-        ces <strong>3 conditions</strong> :</p>
+      <!-- En-tête boxé en light blue avec texte en primary -->
+      <div class="conditions-header-box reveal">
+        <div class="section-label">☑ Règles du Jeu</div>
+        <h2 class="section-title">Comment valider votre place&nbsp;?<br /><span>(Lisez bien !)</span></h2>
+        <p class="conditions-subtitle">Pour rejoindre le cercle des Founding Members, vous devez impérativement respecter
+          ces <strong>3 conditions</strong> :</p>
+      </div>
+
+      <!-- 3 cartes conditions en light green, texte en primary, boîte chiffre en white -->
       <div class="conditions-list">
         <div class="cond-item reveal">
-          <div class="cond-number">1</div>
+          <div class="cond-number">01</div>
           <div class="cond-content">
             <h4>☑️ Être vif</h4>
             <p>Remplissez le formulaire ci-dessous <strong>AVANT que les 20 places ne partent</strong>. Chaque seconde
@@ -162,19 +165,17 @@
           </div>
         </div>
         <div class="cond-item reveal reveal-delay-1">
-          <div class="cond-number">2</div>
+          <div class="cond-number">02</div>
           <div class="cond-content">
             <h4>☑️ Faire partie de la team</h4>
-            <p>Vous devez être <strong>abonné(e) à notre compte Instagram/TikTok</strong> <strong
-                style="color:var(--emerald);">@GreenComptoir</strong>. Nous vérifierons les pseudos !</p>
+            <p>Vous devez être <strong>abonné(e) à notre compte Instagram/TikTok</strong> <strong>@GreenComptoir</strong>. Nous vérifierons les pseudos !</p>
           </div>
         </div>
         <div class="cond-item reveal reveal-delay-2">
-          <div class="cond-number">3</div>
+          <div class="cond-number">03</div>
           <div class="cond-content">
             <h4>☑️ Être prêt(e) à partager</h4>
-            <p>Vous vous engagez à <strong>partager votre expérience en Story le jour J</strong> en nous taguant <strong
-                style="color:var(--emerald);">@GreenComptoir</strong>.</p>
+            <p>Vous vous engagez à <strong>partager votre expérience en Story le jour J</strong> en nous taguant <strong>@GreenComptoir</strong>.</p>
           </div>
         </div>
       </div>
