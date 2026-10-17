@@ -100,38 +100,78 @@
    ========================================================================== */
 :root {
   /* Brand Palette */
-  --primary:     #005C50;
-  --secondary:   #E2E1D3;
+  --primary: #005C50;
+  --secondary: #E2E1D3;
   --light-green: #99C1B7;
-  --light-blue:  #B7DDE2;
-  --white:       #E5F0F9;
-  --accent-red:      #FF383C;
+  --light-blue: #B7DDE2;
+  --white: #E5F0F9;
+  --accent-red: #FF383C;
   --accent-red-dark: #D91D22;
 
   /* Supporting tokens */
-  --orange:      #f97316;
+  --orange: #f97316;
   --orange-dark: #ea580c;
-  --dark:        #1a1a1a;
-  --grey:        #6b7280;
-  --gold:        #d4af37;
+  --dark: #1a1a1a;
+  --grey: #6b7280;
+  --gold: #d4af37;
 }
 
 /* Palette utility classes */
-.bg-primary { background-color: var(--primary); }
-.text-primary { color: var(--primary); }
-.bg-secondary { background-color: var(--secondary); }
-.text-secondary { color: var(--secondary); }
-.bg-light-green { background-color: var(--light-green); }
-.text-light-green { color: var(--light-green); }
-.bg-light-blue { background-color: var(--light-blue); }
-.text-light-blue { color: var(--light-blue); }
-.bg-white { background-color: var(--white); }
-.text-white { color: var(--white); }
-.bg-accent-red { background-color: var(--accent-red); }
-.text-accent-red { color: var(--accent-red); }
+.bg-primary {
+  background-color: var(--primary);
+}
 
-.font-bonmikku { font-family: 'Bonmikku', sans-serif; }
-.font-monundrum { font-family: 'monundrum', sans-serif; }
+.text-primary {
+  color: var(--primary);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
+.bg-light-green {
+  background-color: var(--light-green);
+}
+
+.text-light-green {
+  color: var(--light-green);
+}
+
+.bg-light-blue {
+  background-color: var(--light-blue);
+}
+
+.text-light-blue {
+  color: var(--light-blue);
+}
+
+.bg-white {
+  background-color: var(--white);
+}
+
+.text-white {
+  color: var(--white);
+}
+
+.bg-accent-red {
+  background-color: var(--accent-red);
+}
+
+.text-accent-red {
+  color: var(--accent-red);
+}
+
+.font-bonmikku {
+  font-family: 'Bonmikku', sans-serif;
+}
+
+.font-monundrum {
+  font-family: 'monundrum', sans-serif;
+}
 
 html {
   scroll-behavior: smooth;
@@ -277,45 +317,60 @@ body::before {
 
 /* Zero-gravity space floating animations for stickers */
 @keyframes floatSpace1 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   25% {
     transform: translate(-8px, -16px) rotate(3deg);
   }
+
   50% {
     transform: translate(10px, -8px) rotate(-2deg);
   }
+
   75% {
     transform: translate(-6px, 14px) rotate(2.5deg);
   }
 }
 
 @keyframes floatSpace2 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   25% {
     transform: translate(10px, 14px) rotate(-2.5deg);
   }
+
   50% {
     transform: translate(-8px, 8px) rotate(3deg);
   }
+
   75% {
     transform: translate(8px, -14px) rotate(-2deg);
   }
 }
 
 @keyframes floatSpace3 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   30% {
     transform: translate(-12px, 10px) rotate(2.5deg);
   }
+
   60% {
     transform: translate(8px, -16px) rotate(-3deg);
   }
+
   85% {
     transform: translate(-5px, -8px) rotate(1.5deg);
   }
@@ -330,6 +385,7 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: rotate(200deg);
   z-index: 4;
 }
 
@@ -338,7 +394,7 @@ body::before {
   height: clamp(300px, 38vw, 560px);
   object-fit: contain;
   animation: floatSpace1 7s ease-in-out infinite;
-  filter: drop-shadow(0 20px 60px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.35));
 }
 
 
@@ -431,7 +487,7 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--white);
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -439,7 +495,7 @@ body::before {
   padding: 16px 28px;
   border-radius: 24px;
   text-decoration: none;
-  border: 2px solid rgba(255,255,255,0.32);
+  border: 2px solid rgba(255, 255, 255, 0.32);
   backdrop-filter: blur(6px);
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   cursor: pointer;
@@ -447,8 +503,8 @@ body::before {
 }
 
 .btn-hero-secondary:hover {
-  background: rgba(255,255,255,0.18);
-  border-color: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.6);
   transform: translateY(-2px);
 }
 
@@ -593,7 +649,8 @@ body::before {
   align-items: stretch;
   justify-content: flex-start;
   z-index: 3;
-  padding-right: 100px; /* space for node column */
+  padding-right: 100px;
+  /* space for node column */
   margin-bottom: 0;
 }
 
