@@ -726,14 +726,14 @@ body::before {
   z-index: 4;
 }
 
-/* Rounded number with background matching privileges background (--white) — perfectly centered, no border & no shadow to blend with background */
+/* Rounded number — text colour matches background (--white) so numbers are invisible at rest, revealed when flow passes */
 .timeline-node {
   font-family: 'monundrum', sans-serif;
   font-weight: 900;
   font-size: clamp(2rem, 3vw, 2.7rem);
   line-height: 1;
   z-index: 5;
-  color: rgba(0, 92, 80, 0.55);
+  color: var(--white);
   background: var(--white);
   width: 64px;
   height: 64px;
@@ -983,16 +983,6 @@ body::before {
   z-index: 1;
 }
 
-#form-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary), var(--light-green), var(--orange));
-}
-
 .form-inner {
   max-width: 90vw;
   margin: 0 auto;
@@ -1000,8 +990,9 @@ body::before {
 }
 
 .form-inner .section-title {
-  color: #111827;
+  color: var(--primary);
   margin-bottom: 12px;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
 }
 
 .form-desc {
@@ -1097,25 +1088,30 @@ body::before {
   color: var(--accent-red);
 }
 
-/* Input: inside in white, thin border in light green (primary on active) */
+/* Input: clean, consistent layout — white background with light-green border, no inner padding on icon groups except via padding-left */
 .form-group input {
+  display: block;
   width: 100%;
-  padding: 16px 20px;
+  box-sizing: border-box;
+  padding: 14px 18px;
   border-radius: 12px;
   font-family: 'SF Pro Display', sans-serif;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--primary);
   background: var(--white);
   border: 1.5px solid var(--light-green);
   outline: none;
   box-shadow: none !important;
-  margin: 4px 0;
+  margin: 0;
+  line-height: 1.5;
   transition: border-color 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .form-group input::placeholder {
-  color: rgba(0, 92, 80, 0.45);
+  color: rgba(0, 92, 80, 0.4);
   font-weight: normal;
 }
 
@@ -1124,15 +1120,15 @@ body::before {
   border-color: var(--primary);
   box-shadow: none !important;
   outline: none !important;
-  animation: none !important;
 }
 
 .form-icon-group {
   position: relative;
+  display: block;
 }
 
 .form-icon-group input {
-  padding-left: 48px;
+  padding-left: 46px;
 }
 
 .form-icon-group .field-icon {
@@ -1140,10 +1136,11 @@ body::before {
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.05rem;
+  font-size: 1rem;
   pointer-events: none;
   color: var(--primary);
   z-index: 2;
+  line-height: 1;
 }
 
 /* Button in the form: accent red */
@@ -1691,6 +1688,10 @@ body::before {
     padding: 80px 28px;
   }
 
+  .form-inner .section-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+  }
+
   .form-card {
     padding: 38px 32px;
     border-radius: 24px;
@@ -1916,6 +1917,16 @@ body::before {
   /* 5. Formulaire */
   #form-section {
     padding: 60px 16px 70px;
+  }
+
+  .form-inner .section-title {
+    font-size: clamp(1.9rem, 7vw, 2.4rem);
+  }
+
+  .form-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    margin-bottom: 32px;
   }
 
   .form-card {
