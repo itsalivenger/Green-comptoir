@@ -36,38 +36,40 @@
     </p>
   </div>
 
-  <!-- 2. HERO (Full-screen with logo, stickers & centered headline) -->
+  <!-- 2. HERO (Full-screen with left-aligned content & chips top-right) -->
   <section id="hero">
-    <!-- Logo — top left -->
-    <div class="hero-logo-wrap">
-      <img src="images/Logo.svg" alt="Green Comptoir" class="hero-logo" />
-    </div>
 
-    <!-- Sticker top-right: chips -->
-    <div class="hero-sticker hero-sticker--tr">
+    <!-- Chips image — top right quadrant -->
+    <div class="hero-sticker hero-sticker--chips" data-parallax="0.04">
       <img src="images/stickers/chips.svg" alt="" aria-hidden="true" />
     </div>
 
-    <!-- Sticker bottom-right: box_burgers -->
-    <div class="hero-sticker hero-sticker--br">
-      <img src="images/stickers/box_burgers.svg" alt="" aria-hidden="true" />
-    </div>
 
-    <!-- Sticker bottom-left: burger_box -->
-    <div class="hero-sticker hero-sticker--bl">
-      <img src="images/stickers/burger_box.svg" alt="" aria-hidden="true" />
-    </div>
 
-    <!-- Centered headline -->
-    <div class="hero-center-content">
-      <h1 class="hero-title">
-        LE <span class="hero-hl-green">FAST-FOOD HEALTHY</span> ARRIVE ENFIN À MARRAKECH.
-        DEVENEZ L'UN DE NOS <span class="hero-hl-orange">20 'FOUNDING MEMBERS'</span>
-        ET VIVEZ L'EXPÉRIENCE EN AVANT-PREMIÈRE.
+    <!-- Left-aligned content -->
+    <div class="hero-left-content">
+      <!-- Logo -->
+      <div class="hero-logo-wrap">
+        <img src="images/Logo.svg" alt="Green Comptoir" class="hero-logo" />
+      </div>
+
+      <!-- Headlines -->
+      <h1 class="hero-title-h1">
+        Le <span class="hero-hl-green">fast-food healthy</span> arrive enfin à Marrakech.
       </h1>
+      <p class="hero-title-h2">
+        Devenez l'un de nos <span class="hero-hl-orange">20 'Founding Members'</span> et vivez l'expérience en avant-première.
+      </p>
+
+      <!-- CTAs -->
       <div class="hero-cta-wrapper">
-        <a href="#formulaire" class="btn-hero-action" id="hero-cta-btn">
+        <a href="#formulaire" class="btn-hero-primary" id="hero-cta-btn">
           Je postule maintenant
+          <img src="images/stickers/chips.svg" class="btn-arrow-img" aria-hidden="true" alt="" />
+        </a>
+        <a href="#privileges" class="btn-hero-secondary" id="hero-learn-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          Plus
         </a>
       </div>
     </div>
@@ -87,48 +89,57 @@
 
         <!-- Privilège 1 -->
         <div class="timeline-item reveal">
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="t-icon">🎟️</span>
-              <h3>L'Invitation VIP au "Lundi"</h3>
+          <div class="timeline-card-col">
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <h3>L'Invitation VIP au "Lundi"</h3>
+              </div>
+              <p>
+                Rendez-vous le <strong class="highlight-date">Lundi</strong> à partir de
+                <strong>18h00</strong>. Votre repas et vos boissons sont <strong class="highlight-free">100%
+                  offerts</strong>.
+              </p>
             </div>
-            <p>
-              Rendez-vous le <strong class="highlight-date">Lundi</strong> à partir de
-              <strong>18h00</strong>. Votre repas et vos boissons sont <strong class="highlight-free">100%
-                offerts</strong>.
-            </p>
           </div>
-          <div class="timeline-node">01</div>
+          <div class="timeline-node-col">
+            <div class="timeline-node">01</div>
+          </div>
         </div>
 
         <!-- Privilège 2 -->
         <div class="timeline-item reveal reveal-delay-1">
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="t-icon">👑</span>
-              <h3>L'Expérience Ambassadeur</h3>
+          <div class="timeline-card-col">
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <h3>L'Expérience Ambassadeur</h3>
+              </div>
+              <p>
+                Vous dégusterez nos créations signatures en exclusivité et échangerez directement avec les fondateurs pour
+                nous partager votre ressenti sur l'expérience globale <em>(accueil, ambiance, concept)</em>.
+              </p>
             </div>
-            <p>
-              Vous dégusterez nos créations signatures en exclusivité et échangerez directement avec les fondateurs pour
-              nous partager votre ressenti sur l'expérience globale <em>(accueil, ambiance, concept)</em>.
-            </p>
           </div>
-          <div class="timeline-node">02</div>
+          <div class="timeline-node-col">
+            <div class="timeline-node">02</div>
+          </div>
         </div>
 
         <!-- Privilège 3 -->
         <div class="timeline-item reveal reveal-delay-2">
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="t-icon">🎁</span>
-              <h3>Un Statut à Vie</h3>
+          <div class="timeline-card-col">
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <h3>Un Statut à Vie</h3>
+              </div>
+              <p>
+                Une <strong>surprise spéciale</strong> vous sera réservée lors de vos futures commandes pour vous
+                remercier de nous avoir soutenus dès le premier jour.
+              </p>
             </div>
-            <p>
-              Une <strong>surprise spéciale</strong> vous sera réservée lors de vos futures commandes pour vous
-              remercier de nous avoir soutenus dès le premier jour.
-            </p>
           </div>
-          <div class="timeline-node">03</div>
+          <div class="timeline-node-col">
+            <div class="timeline-node">03</div>
+          </div>
         </div>
       </div>
 
@@ -161,7 +172,7 @@
           <div class="cond-number">01</div>
           <div class="cond-content">
             <h4>☑️ Être vif</h4>
-            <p>Remplissez le formulaire ci-dessous <strong>AVANT que les 20 places ne partent</strong>. Chaque seconde
+            <p>Remplissez le formulaire ci-dessous <strong>AVANT que les 20 places ne partent</strong>.<br />Chaque seconde
               compte !</p>
           </div>
         </div>
@@ -170,7 +181,7 @@
           <div class="cond-content">
             <h4>☑️ Faire partie de la team</h4>
             <p>Vous devez être <strong>abonné(e) à notre compte Instagram/TikTok</strong>
-              <strong>@GreenComptoir</strong>. Nous vérifierons les pseudos !
+              <strong>@GreenComptoir</strong>.<br />Nous vérifierons les pseudos !
             </p>
           </div>
         </div>
@@ -191,20 +202,10 @@
   <section id="form-section">
     <div id="formulaire" style="position:relative; top:-60px;"></div>
     <div class="form-inner">
-      <div class="section-label" style="justify-content:center;">🚀 Candidature Founding Member</div>
+      <div class="section-label" style="justify-content:center;">Candidature Founding Member</div>
       <h2 class="section-title">Réservez votre place<br />maintenant !</h2>
       <p class="form-desc">Remplissez ce formulaire en moins de 60 secondes et rejoignez l'histoire de Green Comptoir.
       </p>
-      <div class="form-card-wrap">
-        <!-- Sticker top-left: burger_box -->
-        <div class="form-sticker form-sticker--tl">
-          <img src="images/stickers/burger_box.svg" alt="" aria-hidden="true" />
-        </div>
-
-        <!-- Sticker bottom-right: chips -->
-        <div class="form-sticker form-sticker--br">
-          <img src="images/stickers/chips.svg" alt="" aria-hidden="true" />
-        </div>
 
         <div class="form-card reveal">
           <form id="founding-form" novalidate>
@@ -223,7 +224,6 @@
             <div class="form-group">
               <label for="field-email">Adresse Email <span>*</span></label>
               <div class="form-icon-group">
-                <span class="field-icon">✉️</span>
                 <input type="email" id="field-email" name="email" placeholder="votre@email.com" required
                   autocomplete="email" />
               </div>
@@ -231,7 +231,6 @@
             <div class="form-group">
               <label for="field-phone">Téléphone WhatsApp <span>*</span></label>
               <div class="form-icon-group">
-                <span class="field-icon">📱</span>
                 <input type="tel" id="field-phone" name="phone" placeholder="+212 6XX XXX XXX" required
                   autocomplete="tel" />
               </div>
@@ -244,8 +243,7 @@
               </div>
             </div>
             <button type="submit" class="btn-cta" id="submit-btn">
-              <span>⚡</span>
-              <span>Je deviens un Founding Member ! (C'est gratuit)</span>
+              Je deviens un Founding Member ! (C'est gratuit)
             </button>
             <p class="form-reassurance">
               <strong>Dès que les 20 places seront atteintes, vous serez placé(e) sur liste d'attente.</strong><br />
@@ -255,7 +253,7 @@
                   <path
                     d="M20.52 3.48A11.93 11.93 0 0012.06 0C5.46 0 .09 5.37.09 11.97c0 2.11.55 4.16 1.6 5.97L0 24l6.23-1.63a11.9 11.9 0 005.83 1.51h.01c6.6 0 11.97-5.37 11.97-11.97 0-3.2-1.25-6.21-3.52-8.43zM12.06 21.92h-.01c-1.8 0-3.56-.48-5.1-1.39l-.37-.22-3.79.99 1.01-3.69-.24-.38a9.96 9.96 0 01-1.53-5.26c0-5.51 4.49-10 10.02-10 2.68 0 5.19 1.04 7.08 2.94a9.94 9.94 0 012.94 7.08c0 5.52-4.49 10.01-10.01 10.01zm5.49-7.5c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.22-.65.08-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.79-1.68-2.09-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.52-.08-.15-.68-1.64-.93-2.25-.24-.59-.49-.51-.68-.52h-.58c-.2 0-.52.08-.8.38-.28.3-1.05 1.03-1.05 2.51s1.08 2.92 1.23 3.12c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.12-.28-.2-.58-.35z" />
                 </svg> <strong>WhatsApp !</strong></span>
-            </p>
+          </p>
           </form>
           <div class="form-success" id="form-success" role="status">
             <div class="success-icon">🎉</div>
