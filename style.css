@@ -733,7 +733,7 @@ body::before {
   font-size: clamp(2rem, 3vw, 2.7rem);
   line-height: 1;
   z-index: 5;
-  color: var(--white);
+  color: var(--light-green);
   background: var(--white);
   width: 64px;
   height: 64px;
