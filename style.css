@@ -197,6 +197,7 @@ button,
 .btn-cta,
 #submit-btn {
   font-family: 'Bonmikku', sans-serif;
+  box-shadow: none !important;
 }
 
 /* MOTIF DE FOND GLOBAL (Pattern.png / Option A filigrane subtil) */
@@ -468,19 +469,19 @@ body::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
   color: #ffffff;
   font-family: 'Bonmikku', sans-serif;
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 1.18rem;
   padding: 18px 36px;
   border-radius: 24px;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  box-shadow: 0 10px 28px rgba(255, 56, 60, 0.4);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  box-shadow: none !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   border: none;
   white-space: nowrap;
@@ -496,7 +497,7 @@ body::before {
 
 .btn-hero-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(255, 56, 60, 0.6);
+  box-shadow: none !important;
 }
 
 /* Secondary button — outlined / ghost */
@@ -509,7 +510,7 @@ body::before {
   color: var(--white);
   font-family: 'Bonmikku', sans-serif;
   font-weight: 700;
-  font-size: 0.97rem;
+  font-size: 1.15rem;
   padding: 16px 28px;
   border-radius: 24px;
   text-decoration: none;
@@ -518,12 +519,21 @@ body::before {
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: none !important;
+}
+
+.btn-hero-secondary .btn-plus-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .btn-hero-secondary:hover {
   background: rgba(255, 255, 255, 0.18);
   border-color: rgba(255, 255, 255, 0.6);
   transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 /* Keep existing btn-hero-action for story CTA section */
@@ -531,24 +541,24 @@ body::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
   color: #ffffff;
   font-family: 'Bonmikku', sans-serif;
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   padding: 18px 40px;
-  border-radius: 9999px;
+  border-radius: 24px;
   text-decoration: none;
-  box-shadow: 0 10px 28px rgba(255, 56, 60, 0.4);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  box-shadow: none !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   border: none;
 }
 
 .btn-hero-action:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(255, 56, 60, 0.6);
+  box-shadow: none !important;
 }
 
 /* SECTION COMMONS */
@@ -742,16 +752,11 @@ body::before {
 
 .timeline-item.active .timeline-node {
   color: var(--primary);
+  transform: scale(1.08);
   box-shadow: none !important;
 }
 
-.timeline-item:hover .timeline-node {
-  transform: scale(1.1);
-  color: var(--primary);
-  box-shadow: none !important;
-}
-
-/* Timeline boxes: light green background, no shadow at rest — lifts on hover */
+/* Timeline boxes: light green background, lifts automatically with box shadow when flow reaches it */
 .timeline-card {
   background: var(--light-green);
   border: none;
@@ -760,20 +765,14 @@ body::before {
   width: 100%;
   position: relative;
   box-shadow: 0 0 0 transparent;
-  cursor: pointer;
+  transform: translate(0, 0);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.timeline-card:hover,
-.timeline-card-col .timeline-card:hover {
+/* Automatically triggers lift and box shadow when flow reaches that box */
+.timeline-item.active .timeline-card {
   transform: translate(6px, -6px) !important;
   box-shadow: -10px 10px 0px var(--primary) !important;
-}
-
-.timeline-card:active,
-.timeline-card-col .timeline-card:active {
-  transform: translate(2px, -2px) !important;
-  box-shadow: -4px 4px 0px var(--primary) !important;
 }
 
 .timeline-card-header {
@@ -1160,14 +1159,13 @@ body::before {
   color: #ffffff !important;
   font-family: 'Bonmikku', sans-serif;
   font-weight: 900;
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   border: none;
   border-radius: 16px;
   cursor: pointer;
   margin-top: 8px;
-  animation: ctaPulse 2.5s ease-in-out infinite;
-  box-shadow: 0 8px 32px rgba(255, 56, 60, 0.45);
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  box-shadow: none !important;
+  transition: transform 0.2s, background-color 0.2s;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -1176,20 +1174,7 @@ body::before {
 #submit-btn:hover {
   background: #e6282c !important;
   transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 16px 48px rgba(255, 56, 60, 0.65);
-  animation: none;
-}
-
-@keyframes ctaPulse {
-
-  0%,
-  100% {
-    box-shadow: 0 8px 32px rgba(255, 56, 60, 0.45);
-  }
-
-  50% {
-    box-shadow: 0 8px 48px rgba(255, 56, 60, 0.75);
-  }
+  box-shadow: none !important;
 }
 
 .form-reassurance {
@@ -1419,7 +1404,7 @@ body::before {
 }
 
 .story-cta-title {
-  font-family: 'monundrum', sans-serif;
+  font-family: 'Bonmikku', sans-serif;
   font-weight: 900;
   font-size: clamp(2rem, 4.2vw, 3.2rem);
   line-height: 1.2;
@@ -1437,11 +1422,12 @@ body::before {
   gap: 16px;
   padding: 18px 42px;
   border-radius: 24px;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   line-height: 1.35;
   text-align: center;
   text-transform: uppercase;
-  box-shadow: 0 12px 36px rgba(255, 56, 60, 0.45);
+  box-shadow: none !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .story-cta-btn span {
@@ -1460,7 +1446,7 @@ body::before {
 
 .story-cta-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 48px rgba(255, 56, 60, 0.65);
+  box-shadow: none !important;
 }
 
 /* 7. FOOTER */
@@ -1729,7 +1715,7 @@ body::before {
     width: 100%;
     max-width: 400px;
     padding: 18px 24px;
-    font-size: 0.98rem;
+    font-size: 1.12rem;
   }
 
   .footer-grid {
@@ -1955,7 +1941,7 @@ body::before {
 
   .btn-cta {
     padding: 16px 14px;
-    font-size: clamp(0.86rem, 3.5vw, 0.98rem);
+    font-size: clamp(1.05rem, 3.8vw, 1.18rem);
     border-radius: 14px;
     white-space: normal;
     line-height: 1.35;
