@@ -112,6 +112,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial call on page load
   runScrollAnimations();
 
+  // 3. Hero sticker mouse movement interactivity
+  const heroSection = document.getElementById('hero');
+  const heroChips = document.querySelector('.hero-sticker--chips');
+  if (heroSection && heroChips) {
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width - 0.5;
+      const relY = (e.clientY - rect.top) / rect.height - 0.5;
+      targetX = relX * 38;
+      targetY = relY * 38;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    function updateHeroChipsParallax() {
+      mouseX += (targetX - mouseX) * 0.08;
+      mouseY += (targetY - mouseY) * 0.08;
+      heroChips.style.transform = `translate(${mouseX.toFixed(2)}px, ${mouseY.toFixed(2)}px) rotate(225deg)`;
+      requestAnimationFrame(updateHeroChipsParallax);
+    }
+    updateHeroChipsParallax();
+  }
+
   // 4. Form submit handling
   const form = document.getElementById('founding-form');
   const successMsg = document.getElementById('form-success');

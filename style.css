@@ -401,7 +401,7 @@ body::before {
 
 /* Hero headings — both titles share the same size and spread comfortably */
 .hero-title-h1 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'monundrum', sans-serif;
   font-size: clamp(1.4rem, 2.6vw, 2.4rem);
   font-weight: 900;
   line-height: 1.22;
@@ -413,7 +413,7 @@ body::before {
 }
 
 .hero-title-h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'monundrum', sans-serif;
   font-size: clamp(1.4rem, 2.6vw, 2.4rem);
   font-weight: 700;
   line-height: 1.28;
@@ -631,30 +631,51 @@ body::before {
   background-clip: text;
 }
 
-/* Timeline: the vertical line is split by each node — done via padding & border structure */
+/* 3. TIMELINE — CONTINUOUS LINE WITH ROUNDED BACKGROUND NUMBERS */
 .timeline {
   position: relative;
-  max-width: 700px;
+  max-width: 740px;
   margin: 0 auto 56px;
   padding: 20px 0;
 }
 
-/* Track background removed — lines are drawn per segment between items via item::before/after */
-.timeline-track-bg,
+/* Continuous background track line */
+.timeline-track-bg {
+  display: block !important;
+  position: absolute;
+  top: 32px;
+  bottom: 32px;
+  right: 38px;
+  width: 4px;
+  background: rgba(0, 92, 80, 0.22);
+  border-radius: 4px;
+  z-index: 1;
+}
+
+/* Dynamic progress fill line driven by scroll */
 .timeline-progress-bar {
-  display: none;
+  display: block !important;
+  position: absolute;
+  top: 32px;
+  right: 38px;
+  width: 4px;
+  height: 0%;
+  background: var(--primary);
+  border-radius: 4px;
+  z-index: 2;
+  transition: height 0.1s linear;
 }
 
 .timeline-item {
   position: relative;
   width: 100%;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-start;
   z-index: 3;
-  padding-right: 100px;
-  /* space for node column */
-  margin-bottom: 0;
+  padding: 0;
+  margin-bottom: 36px;
+  gap: 32px;
 }
 
 .timeline-item:last-child {
@@ -667,105 +688,52 @@ body::before {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 24px 0;
 }
 
-/* Node column — right side, vertically flex with: line top, number, line bottom */
+/* Node column — right side, centered over the continuous line */
 .timeline-node-col {
-  width: 100px;
+  width: 80px;
   flex-shrink: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
+  z-index: 4;
 }
 
-/* Line segment above the number */
-.timeline-node-col::before {
-  content: '';
-  display: block;
-  width: 5px;
-  flex: 1;
-  background: var(--light-green);
-  border-radius: 5px 5px 0 0;
-  min-height: 24px;
-  transition: background 0.35s ease;
-}
-
-/* Line segment below the number */
-.timeline-node-col::after {
-  content: '';
-  display: block;
-  width: 5px;
-  flex: 1;
-  background: var(--light-green);
-  border-radius: 0 0 5px 5px;
-  min-height: 24px;
-  transition: background 0.35s ease;
-}
-
-/* First item: no top line */
-.timeline-item:first-child .timeline-node-col::before {
-  background: transparent;
-}
-
-/* Last item: no bottom line */
-.timeline-item:last-child .timeline-node-col::after {
-  background: transparent;
-}
-
-/* Active state: colour the line segments above the active node */
-.timeline-item.active .timeline-node-col::before {
-  background: var(--primary);
-}
-
-/* The number itself */
+/* Rounded number with background matching privileges background (--white) — perfectly centered, no border & no shadow to blend with background */
 .timeline-node {
   font-family: 'monundrum', sans-serif;
   font-weight: 900;
-  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-size: clamp(2rem, 3vw, 2.7rem);
   line-height: 1;
   z-index: 5;
-  color: var(--light-green);
+  color: rgba(0, 92, 80, 0.55);
+  background: var(--white);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: none !important;
   user-select: none;
   transition: color 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 8px 0;
-  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .timeline-item.active .timeline-node {
   color: var(--primary);
+  box-shadow: none !important;
 }
 
 .timeline-item:hover .timeline-node {
-  transform: scale(1.12);
-}
-
-/* Timeline numbers (nodes): raw numbers, no border/padding/background */
-.timeline-node {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'monundrum', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2.4rem, 3.5vw, 3.2rem);
-  line-height: 1;
-  z-index: 5;
-  color: var(--light-green);
-  user-select: none;
-  transition: color 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  width: 72px;
-  text-align: center;
-}
-
-.timeline-item.active .timeline-node {
+  transform: scale(1.1);
   color: var(--primary);
-}
-
-.timeline-item:hover .timeline-node {
-  transform: translateY(-50%) scale(1.12);
+  box-shadow: none !important;
 }
 
 /* Timeline boxes: light green background, no shadow at rest — lifts on hover */
@@ -776,13 +744,21 @@ body::before {
   padding: 30px 32px;
   width: 100%;
   position: relative;
-  box-shadow: -0px 0px 0px var(--primary);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 0 transparent;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.timeline-card:hover {
-  transform: translate(6px, -6px);
-  box-shadow: -10px 10px 0px var(--primary);
+.timeline-card:hover,
+.timeline-card-col .timeline-card:hover {
+  transform: translate(6px, -6px) !important;
+  box-shadow: -10px 10px 0px var(--primary) !important;
+}
+
+.timeline-card:active,
+.timeline-card-col .timeline-card:active {
+  transform: translate(2px, -2px) !important;
+  box-shadow: -4px 4px 0px var(--primary) !important;
 }
 
 .timeline-card-header {
@@ -833,34 +809,29 @@ body::before {
   letter-spacing: 0.05em;
 }
 
-/* Warning callout under timeline */
+/* Warning callout under timeline: no shadow, border in accent red, text in white var, emphasised in accent red */
 .timeline-warning-box {
   max-width: 740px;
   margin: 16px auto 0;
-  background: #ffffff;
-  border: 2px solid var(--primary);
+  background: var(--primary);
+  border: 2px solid var(--accent-red);
   border-radius: 18px;
-  padding: 24px 32px;
+  padding: 22px 30px;
   display: flex;
   align-items: center;
-  gap: 18px;
-  box-shadow: -6px 6px 0px var(--primary);
-}
-
-.timeline-warning-box .warn-icon {
-  font-size: 1.8rem;
-  flex-shrink: 0;
+  box-shadow: none !important;
 }
 
 .timeline-warning-box p {
   font-family: 'Inter', sans-serif;
   font-size: 0.97rem;
   line-height: 1.65;
-  color: var(--primary);
+  color: var(--white);
+  margin: 0;
 }
 
 .timeline-warning-box strong {
-  color: var(--primary);
+  color: var(--accent-red);
   font-weight: 800;
 }
 
@@ -923,7 +894,7 @@ body::before {
   gap: 22px;
 }
 
-/* 3 boxes with light green background, no shadow at rest — lifts on hover with shadow */
+/* 3 boxes with light green background, no shadow at rest — lifts on hover with shadow (identical timing to timeline-card) */
 .cond-item {
   display: flex;
   align-items: center;
@@ -934,7 +905,11 @@ body::before {
   border: none;
   box-shadow: 0 0 0 transparent;
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.cond-item.visible {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .cond-item:hover,
@@ -944,12 +919,18 @@ body::before {
   box-shadow: -10px 10px 0px var(--primary) !important;
 }
 
+.cond-item:active,
+.conditions-list .cond-item:active {
+  transform: translate(2px, -2px) !important;
+  box-shadow: -4px 4px 0px var(--primary) !important;
+}
+
 /* Box with number in it in white (variable), numbers in primary bold */
 .cond-number {
   min-width: 54px;
   height: 54px;
   background: var(--white);
-  border-radius: 14px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1590,97 +1571,124 @@ body::before {
   line-height: 1.7;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE DESIGN — IMPLEMENTATION COMPLETE */
+
+/* 1. TABLET & LAPTOP (max-width: 960px) */
 @media(max-width: 960px) {
+  /* 1. Urgency Bar */
+  .urgency-text {
+    gap: 10px;
+    font-size: 0.95rem;
+  }
+
+  /* 2. Hero */
   #hero {
-    grid-template-columns: 1fr;
     min-height: auto;
+    padding: 20px 0 40px;
   }
 
-  .hero-image-side {
-    order: 1;
-    padding: 24px 20px 10px;
-    width: 100%;
-    height: auto;
-  }
-
-  .hero-img-box {
-    min-height: 280px;
-    height: 54vw;
-    max-height: 420px;
-    border-radius: 20px;
-  }
-
-  .hero-text-side {
-    order: 2;
-    padding: 36px 24px 60px;
-    text-align: center;
-    align-items: center;
-  }
-
-  .hero-text-content {
-    align-items: center;
-    text-align: center;
+  .hero-left-content {
+    max-width: 75%;
+    padding: 50px 32px 50px 40px;
     gap: 20px;
   }
 
-  .hero-title {
-    text-align: center;
+  .hero-sticker--chips {
+    top: -10px;
+    right: -10px;
+    width: 45%;
+    height: 45%;
+    opacity: 0.85;
   }
 
-  .hero-paragraph {
-    text-align: center;
+  .hero-sticker--chips img {
+    width: clamp(240px, 32vw, 360px);
+    height: clamp(240px, 32vw, 360px);
   }
 
-  .hero-cta-wrapper {
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
+  .hero-title-h1,
+  .hero-title-h2 {
+    max-width: 100%;
   }
 
-  .btn-hero-action {
-    width: 100%;
-    max-width: 380px;
+  /* 3. Privileges / Timeline */
+  #privileges {
+    padding: 80px 28px 70px;
   }
 
-  /* TIMELINE RESPONSIVE */
+  .privileges-title {
+    margin-bottom: 48px;
+  }
+
   .timeline {
+    max-width: 100%;
     padding: 10px 0;
   }
 
   .timeline-track-bg,
   .timeline-progress-bar {
-    display: none !important;
+    right: 28px;
   }
 
   .timeline-item {
-    width: 100%;
-    left: 0 !important;
-    padding: 0 !important;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 20px;
+    margin-bottom: 28px;
   }
 
   .timeline-node-col {
-    width: 56px;
+    width: 60px;
   }
 
   .timeline-node {
-    font-size: 1.8rem;
+    width: 56px;
+    height: 56px;
+    font-size: 1.85rem;
   }
 
   .timeline-card {
-    max-width: 100%;
-    padding: 24px 20px;
+    padding: 24px 26px;
+    border-radius: 28px;
   }
 
   .timeline-warning-box {
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-    box-shadow: -4px 4px 0px var(--primary);
+    padding: 18px 24px;
+    box-shadow: none !important;
   }
 
+  /* 4. Conditions */
+  #conditions {
+    padding: 80px 28px;
+  }
+
+  .conditions-header-box {
+    padding: 30px 28px;
+    border-radius: 18px;
+    margin-bottom: 28px;
+  }
+
+  .cond-item {
+    padding: 22px 24px;
+    border-radius: 28px;
+    gap: 18px;
+    box-shadow: 0 0 0 transparent;
+  }
+
+  /* 5. Formulaire */
+  #form-section {
+    padding: 80px 28px;
+  }
+
+  .form-card {
+    padding: 38px 32px;
+    border-radius: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Story & Footer */
   .story-inner {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -1701,112 +1709,298 @@ body::before {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .form-card {
-    padding: 36px 28px;
-  }
 }
 
-@media(max-width: 600px) {
-  .hero-logo-wrap {
-    top: 18px;
-    left: 18px;
+/* 2. MOBILE STANDARD & COMPACT (max-width: 680px) */
+@media(max-width: 680px) {
+  /* 1. Urgency Bar */
+  #urgency-bar {
+    padding: 8px 12px;
+  }
+
+  .urgency-text {
+    gap: 6px 10px;
+    font-size: clamp(0.78rem, 2.9vw, 0.92rem);
+    letter-spacing: 0.04em;
+  }
+
+  .urgency-tilde {
+    width: 28px;
+    height: 6px;
+    margin: 0 4px;
+  }
+
+  /* 2. Hero */
+  #hero {
+    min-height: auto;
+    padding: 20px 0 40px;
+    align-items: flex-start;
+  }
+
+  .hero-left-content {
+    max-width: 100%;
+    padding: 32px 18px 36px;
+    gap: 20px;
   }
 
   .hero-logo {
-    height: 42px;
+    height: clamp(50px, 12vw, 64px);
   }
 
-  /* Hero stickers pushed deeply into corners on mobile so only a portion is visible */
-  .hero-sticker--tr {
-    width: clamp(150px, 34vw, 220px);
-    height: clamp(150px, 34vw, 220px);
-    top: -60px;
-    right: -60px;
+  .hero-sticker--chips {
+    top: 10px;
+    right: -25px;
+    width: clamp(170px, 44vw, 230px);
+    height: clamp(170px, 44vw, 230px);
+    opacity: 0.35;
+    pointer-events: none;
   }
 
-  .hero-sticker--br {
-    width: clamp(160px, 36vw, 230px);
-    height: clamp(160px, 36vw, 230px);
-    bottom: -60px;
-    right: -60px;
+  .hero-sticker--chips img {
+    width: 100%;
+    height: 100%;
   }
 
-  .hero-sticker--bl {
-    width: clamp(160px, 36vw, 230px);
-    height: clamp(160px, 36vw, 230px);
-    bottom: -60px;
-    left: -60px;
+  .hero-title-h1 {
+    font-size: clamp(1.35rem, 5.8vw, 1.85rem);
+    line-height: 1.22;
   }
 
-  .hero-center-content {
-    padding: 80px 16px 50px;
-    gap: 22px;
+  .hero-title-h2 {
+    font-size: clamp(1.35rem, 5.8vw, 1.85rem);
+    line-height: 1.25;
+  }
+
+  .hero-cta-wrapper {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    padding: 16px 20px;
+    text-align: center;
+    border-radius: 20px;
+    white-space: normal;
+  }
+
+  /* 3. Privileges / Timeline */
+  #privileges {
+    padding: 60px 16px 50px;
+  }
+
+  .privileges-title {
+    font-size: clamp(1.35rem, 5.5vw, 1.85rem);
+    margin-bottom: 36px;
+  }
+
+  .timeline {
+    margin-bottom: 36px;
+    padding: 0;
+  }
+
+  .timeline-track-bg,
+  .timeline-progress-bar {
+    right: 23px;
+    width: 3px;
+    top: 24px;
+    bottom: 24px;
+  }
+
+  .timeline-item {
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .timeline-node-col {
+    width: 48px;
+  }
+
+  .timeline-node {
+    width: 46px;
+    height: 46px;
+    font-size: 1.45rem;
+    background: var(--white);
+    box-shadow: none !important;
+  }
+
+  .timeline-card {
+    padding: 18px 16px;
+    border-radius: 22px;
+  }
+
+  .timeline-card h3 {
+    font-size: 1.08rem;
+  }
+
+  .timeline-card p {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .timeline-warning-box {
+    padding: 16px 18px;
+    font-size: 0.88rem;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: none !important;
+  }
+
+  /* 4. Conditions / Règles du Jeu */
+  #conditions {
+    padding: 60px 16px;
   }
 
   .conditions-header-box {
-    padding: 24px 20px;
+    padding: 24px 18px;
+    border-radius: 18px;
+    margin-bottom: 22px;
     box-shadow: -5px 5px 0px rgba(0, 92, 80, 0.45);
   }
 
-  .cond-item {
-    padding: 20px 18px;
+  .conditions-header-box .section-title {
+    font-size: clamp(1.35rem, 5.6vw, 1.75rem);
+  }
+
+  .conditions-header-box .conditions-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .conditions-list {
     gap: 16px;
+  }
+
+  .cond-item {
+    padding: 18px 16px;
+    gap: 14px;
+    border-radius: 22px;
     box-shadow: 0 0 0 transparent;
   }
 
   .cond-number {
     min-width: 44px;
     height: 44px;
-    font-size: 1.1rem;
+    font-size: 1.08rem;
+    border-radius: 12px;
   }
 
-  /* Form stickers and card mobile */
-  .form-sticker--tl {
-    top: -24px;
-    left: -15px;
-    width: 80px;
-    height: 80px;
+  .cond-content h4 {
+    font-size: 1.02rem;
+    margin-bottom: 4px;
   }
 
-  .form-sticker--br {
-    bottom: -24px;
-    right: -15px;
-    width: 80px;
-    height: 80px;
+  .cond-content p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  /* 5. Formulaire */
+  #form-section {
+    padding: 60px 16px 70px;
   }
 
   .form-card {
-    padding: 36px 20px;
+    padding: 28px 18px;
+    border-radius: 22px;
     box-shadow: -5px 5px 0px var(--primary);
   }
 
-  #privileges,
-  #conditions,
-  #form-section,
-  #footer {
-    padding: 72px 20px;
+  .form-group {
+    margin-bottom: 14px;
   }
 
+  .form-group label {
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+  }
+
+  .form-group input {
+    padding: 13px 15px;
+    font-size: 0.92rem;
+    border-radius: 12px;
+  }
+
+  .btn-cta {
+    padding: 16px 14px;
+    font-size: clamp(0.86rem, 3.5vw, 0.98rem);
+    border-radius: 14px;
+    white-space: normal;
+    line-height: 1.35;
+    width: 100%;
+  }
+
+  /* Story, Quote & Footer */
   #story {
-    padding: 40px 20px 24px;
+    padding: 40px 16px 24px;
   }
 
   .story-quote {
-    padding: 26px 20px 24px 22px;
+    padding: 24px 18px;
     border-radius: 0 16px 16px 0;
   }
 
   .story-cta-section {
-    padding: 50px 20px 60px;
+    padding: 50px 16px 60px;
   }
 
   .story-badge-float {
     right: 0;
     bottom: -15px;
+  }
+
+  #footer {
+    padding: 60px 16px 40px;
+  }
+}
+
+/* 3. EXTRA SMALL MOBILE (max-width: 400px) */
+@media(max-width: 400px) {
+  .urgency-text {
+    font-size: 0.78rem;
+    gap: 4px 6px;
+  }
+
+  .hero-left-content {
+    padding: 24px 14px 28px;
+  }
+
+  .hero-title-h1,
+  .hero-title-h2 {
+    font-size: 1.3rem;
+  }
+
+  .timeline-node-col {
+    width: 42px;
+  }
+
+  .timeline-node {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+
+  .timeline-track-bg,
+  .timeline-progress-bar {
+    right: 20px;
+  }
+
+  .timeline-card {
+    padding: 16px 14px;
+    border-radius: 18px;
+  }
+
+  .cond-item {
+    padding: 16px 12px;
+    gap: 12px;
+  }
+
+  .form-card {
+    padding: 22px 14px;
   }
 }
