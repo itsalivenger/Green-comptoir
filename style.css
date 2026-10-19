@@ -288,24 +288,24 @@ body::before {
   font-family: 'Bonmikku', sans-serif;
 }
 
-/* Left-aligned content block */
+/* Left-aligned content block - enhanced spacing to spread vertically */
 .hero-left-content {
   position: relative;
   z-index: 6;
-  max-width: 68%;
+  max-width: 70%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
-  padding: 60px 48px 60px 64px;
+  gap: clamp(28px, 3.8vh, 42px);
+  padding: clamp(64px, 8.5vh, 96px) clamp(48px, 5.5vw, 76px);
 }
 
 /* Logo inside left content */
 .hero-logo-wrap {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .hero-logo {
@@ -418,25 +418,25 @@ body::before {
 /* Hero headings — both titles share the same size and spread comfortably */
 .hero-title-h1 {
   font-family: 'Bonmikku', sans-serif;
-  font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+  font-size: clamp(1.65rem, 3.2vw, 2.95rem);
   font-weight: 900;
   line-height: 1.22;
   color: var(--white);
   letter-spacing: -0.01em;
   margin: 0;
   text-transform: uppercase;
-  max-width: 860px;
+  max-width: 960px;
 }
 
 .hero-title-h2 {
   font-family: 'Bonmikku', sans-serif;
-  font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+  font-size: clamp(1.6rem, 3.0vw, 2.75rem);
   font-weight: 700;
   line-height: 1.28;
   color: rgba(229, 240, 249, 0.88);
   margin: 0;
   text-transform: uppercase;
-  max-width: 860px;
+  max-width: 960px;
 }
 
 .hero-hl-green {
@@ -459,9 +459,9 @@ body::before {
 .hero-cta-wrapper {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin-top: 8px;
+  margin-top: 14px;
 }
 
 /* Primary button — wide accent red with right arrow image */
@@ -1411,26 +1411,78 @@ body::before {
   text-transform: uppercase;
 }
 
+/* Stickers in final section right above footer (visible on all devices except phones) */
+.story-cta-sticker {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  display: block;
+  will-change: transform;
+}
+
+.story-cta-sticker img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.16));
+  will-change: transform;
+}
+
+/* Top-right: box_burgers */
+.story-cta-sticker--tr {
+  top: 24px;
+  right: clamp(24px, 4.5vw, 64px);
+  width: clamp(140px, 14vw, 200px);
+  height: clamp(140px, 14vw, 200px);
+  transform: rotate(12deg);
+}
+
+.story-cta-sticker--tr img {
+  animation: floatSpace2 8s ease-in-out infinite;
+}
+
+/* Bottom-left: chips */
+.story-cta-sticker--bl {
+  bottom: 20px;
+  left: clamp(24px, 4.5vw, 64px);
+  width: clamp(135px, 13.5vw, 195px);
+  height: clamp(135px, 13.5vw, 195px);
+  transform: rotate(-14deg);
+}
+
+.story-cta-sticker--bl img {
+  animation: floatSpace1 7.5s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
 .story-cta-btn {
   font-family: 'Bonmikku', sans-serif;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  padding: 18px 42px;
+  padding: 20px 48px;
   border-radius: 24px;
-  font-size: 1.2rem;
+  font-size: 1.22rem;
   line-height: 1.35;
   text-align: center;
   text-transform: uppercase;
   box-shadow: none !important;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  width: auto;
+  max-width: fit-content;
 }
 
 .story-cta-btn span {
   font-family: 'Bonmikku', sans-serif;
   display: inline-block;
   line-height: 1.35;
+  white-space: nowrap;
+}
+
+.story-cta-br {
+  display: none;
 }
 
 .story-cta-btn .btn-arrow-img {
@@ -1713,10 +1765,24 @@ body::before {
   }
 
   .story-cta-btn {
-    width: 100%;
-    max-width: 400px;
-    padding: 18px 24px;
-    font-size: 1.12rem;
+    width: auto;
+    max-width: 100%;
+    padding: 18px 36px;
+    font-size: 1.15rem;
+  }
+
+  .story-cta-sticker--tr {
+    width: clamp(110px, 13vw, 150px);
+    height: clamp(110px, 13vw, 150px);
+    right: 20px;
+    top: 16px;
+  }
+
+  .story-cta-sticker--bl {
+    width: clamp(105px, 12.5vw, 145px);
+    height: clamp(105px, 12.5vw, 145px);
+    left: 20px;
+    bottom: 16px;
   }
 
   .footer-grid {
@@ -1973,6 +2039,26 @@ body::before {
     padding: 50px 16px 60px;
   }
 
+  /* Hide story-cta stickers on phones (small screens) */
+  .story-cta-sticker {
+    display: none !important;
+  }
+
+  .story-cta-btn {
+    width: 100%;
+    max-width: 380px;
+    padding: 16px 20px;
+    font-size: 1.05rem;
+  }
+
+  .story-cta-btn span {
+    white-space: normal;
+  }
+
+  .story-cta-br {
+    display: inline;
+  }
+
   .story-badge-float {
     right: 0;
     bottom: -15px;
@@ -2027,4 +2113,176 @@ body::before {
   .form-card {
     padding: 22px 14px;
   }
+}
+
+
+/* ========================================================
+   MODAL DIALOG (Success & Error Feedback)
+   ======================================================== */
+.form-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.form-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.form-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.form-modal-dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 480px;
+  background: var(--primary);
+  border-radius: 24px;
+  padding: 46px 34px 38px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), -6px 6px 0px var(--light-green);
+  border: 2px solid var(--light-green);
+  transform: scale(0.92) translateY(12px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.form-modal.is-open .form-modal-dialog {
+  transform: scale(1) translateY(0);
+}
+
+/* Close button with large centered X */
+.form-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--light-green);
+  color: var(--primary);
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.form-modal-close svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.form-modal-close:hover {
+  background: #ffffff;
+  color: var(--primary);
+  transform: rotate(90deg);
+}
+
+.form-modal-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.form-modal.is-open .form-modal-icon {
+  animation: modalIconPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalIconPop {
+  0% { transform: scale(0.4); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.form-modal.modal--success .form-modal-icon {
+  background: rgba(153, 193, 183, 0.22);
+  border: 2px solid var(--light-green);
+  color: var(--light-green);
+}
+
+.form-modal.modal--error .form-modal-icon {
+  background: rgba(255, 56, 60, 0.2);
+  border: 2px solid var(--accent-red);
+  color: var(--accent-red);
+}
+
+.form-modal-title {
+  font-family: 'Bonmikku', sans-serif;
+  font-weight: 800;
+  font-size: 1.65rem;
+  color: #ffffff;
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+
+.form-modal.modal--error .form-modal-title {
+  color: #ffffff;
+}
+
+/* White text instead of gray */
+.form-modal-message {
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 1.02rem;
+  color: #ffffff;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.form-modal-message strong {
+  color: var(--light-green);
+  font-weight: 700;
+}
+
+.form-modal-btn {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 14px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  background: var(--light-green);
+  color: var(--primary);
+  box-shadow: -4px 4px 0px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.form-modal-btn:hover {
+  background: #b5ded5;
+  transform: translateY(-1px);
+}
+
+.form-modal.modal--error .form-modal-btn {
+  background: var(--accent-red);
+  color: #ffffff;
+  box-shadow: -4px 4px 0px rgba(0, 0, 0, 0.35);
+}
+
+.form-modal.modal--error .form-modal-btn:hover {
+  background: var(--accent-red-dark);
 }

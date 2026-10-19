@@ -40,29 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const windowHeight = window.innerHeight;
 
     // === PHASE 1: READ ALL GEOMETRIES FIRST (Prevents Forced Synchronous Layout / Freezing) ===
-    let timelineProgress = 0;
+    let timelineRect = null;
     let itemStates = [];
-    if (timeline && progressBar && timelineItems.length > 0) {
-      const viewportCenter = windowHeight * 0.50;
-      const firstItem = timelineItems[0];
-      const lastItem = timelineItems[timelineItems.length - 1];
-      const firstRect = firstItem.getBoundingClientRect();
-      const lastRect = lastItem.getBoundingClientRect();
-
-      // Node vertical centers
-      const startY = firstRect.top + (firstRect.height / 2);
-      const endY = lastRect.top + (lastRect.height / 2);
-      const travelDist = Math.max(1, endY - startY);
-
-      // Calculates how far we've scrolled the timeline through the viewport center
-      timelineProgress = ((viewportCenter - startY) / travelDist) * 100;
-      timelineProgress = Math.max(0, Math.min(100, timelineProgress));
-
+    if (timeline && progressBar) {
+      timelineRect = timeline.getBoundingClientRect();
       timelineItems.forEach(item => {
         const itemRect = item.getBoundingClientRect();
-        const itemCenter = itemRect.top + (itemRect.height / 2);
-        // Item activates when its center reaches the viewport center
-        const shouldBeActive = itemCenter <= (viewportCenter + 25);
+        // Activate milestone as user scrolls down to it
+        const shouldBeActive = (itemRect.top + 32) < (windowHeight * 0.68);
         itemStates.push(shouldBeActive);
       });
     }
@@ -74,9 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === PHASE 2: WRITE ALL DOM MUTATIONS ===
 
-    // 2a. Dynamic Timeline Scroll Fill (Smooth, centered in page while scrolling)
-    if (progressBar && timelineItems.length > 0) {
-      progressBar.style.height = timelineProgress.toFixed(1) + '%';
+    // 2a. Dynamic Timeline Scroll Fill
+    if (timelineRect && progressBar) {
+      const triggerStart = windowHeight * 0.72;
+      const scrolledDist = triggerStart - timelineRect.top;
+      // Total travel distance from start to last item
+      const totalDist = Math.max(1, timelineRect.height - 40);
+
+      let progress = (scrolledDist / totalDist) * 100;
+      progress = Math.max(0, Math.min(100, progress));
+
+      progressBar.style.height = progress.toFixed(1) + '%';
 
       timelineItems.forEach((item, index) => {
         if (itemStates[index]) {
@@ -112,43 +105,60 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial call on page load
   runScrollAnimations();
 
-  // 3. Hero sticker mouse movement interactivity
-  const heroSection = document.getElementById('hero');
-  const heroChips = document.querySelector('.hero-sticker--chips');
-  if (heroSection && heroChips) {
-    let mouseX = 0, mouseY = 0;
-    let targetX = 0, targetY = 0;
-
-    heroSection.addEventListener('mousemove', (e) => {
-      const rect = heroSection.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width - 0.5;
-      const relY = (e.clientY - rect.top) / rect.height - 0.5;
-      targetX = relX * 38;
-      targetY = relY * 38;
-    });
-
-    heroSection.addEventListener('mouseleave', () => {
-      targetX = 0;
-      targetY = 0;
-    });
-
-    function updateHeroChipsParallax() {
-      mouseX += (targetX - mouseX) * 0.08;
-      mouseY += (targetY - mouseY) * 0.08;
-      heroChips.style.transform = `translate(${mouseX.toFixed(2)}px, ${mouseY.toFixed(2)}px) rotate(225deg)`;
-      requestAnimationFrame(updateHeroChipsParallax);
-    }
-    updateHeroChipsParallax();
-  }
-
-  // 4. Form submit handling
-  const form = document.getElementById('founding-form');
-  const successMsg = document.getElementById('form-success');
+  // 4. Form submit handling (Google Apps Script Web App)
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbw2a7jZVa_5LJnLQT59HMSTSalseigKmTV1T-ypcussDpZpmY5jTVs6e560xqxwgoex/exec';
+  const form = document.getElementById('contactForm');
   const submitBtn = document.getElementById('submit-btn');
 
+  // Modal elements
+  const modal = document.getElementById('form-modal');
+  const modalIcon = document.getElementById('modal-icon');
+  const modalTitle = document.getElementById('modal-title');
+  const modalMessage = document.getElementById('modal-message');
+  const modalActionBtn = document.getElementById('modal-action-btn');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+
+  function openModal({ type, title, message, buttonText }) {
+    if (!modal) return;
+    modal.classList.remove('modal--success', 'modal--error');
+    modal.classList.add('modal--' + type);
+
+    if (modalIcon) {
+      modalIcon.innerHTML = type === 'success'
+        ? '<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>'
+        : '<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+    }
+
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalMessage) modalMessage.innerHTML = message;
+    if (modalActionBtn) modalActionBtn.textContent = buttonText || 'Fermer';
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+  if (modalActionBtn) modalActionBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+
   if (form) {
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', e => {
       e.preventDefault();
+
       let valid = true;
       form.querySelectorAll('input[required]').forEach(input => {
         input.style.borderColor = '';
@@ -162,19 +172,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!valid) return;
 
-      submitBtn.innerHTML = '⏳ Envoi en cours...';
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.8';
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Envoyer';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.8';
+        submitBtn.innerHTML = '⏳ Envoi en cours...';
+      }
 
-      setTimeout(() => {
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 1500);
+      const formData = new FormData(form);
+
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      })
+        .then(response => {
+          openModal({
+            type: 'success',
+            title: 'Candidature Envoyée ! 🎉',
+            message: 'Félicitations ! Votre inscription a bien été enregistrée.<br>Si vous êtes sélectionné(e) parmi les 20 Founding Members, vous recevrez votre confirmation directement sur <strong>WhatsApp</strong> !',
+            buttonText: 'Génial, merci !'
+          });
+          form.reset();
+        })
+        .catch(error => {
+          console.error('Error submitting form!', error.message);
+          openModal({
+            type: 'error',
+            title: 'Oups ! Une erreur est survenue',
+            message: 'Impossible d\'envoyer votre candidature pour le moment.<br>Veuillez vérifier votre connexion internet ou la configuration du script et réessayer.',
+            buttonText: 'Réessayer'
+          });
+        })
+        .finally(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '';
+            submitBtn.innerHTML = originalBtnText;
+          }
+        });
     });
 
-    document.querySelectorAll('#founding-form input').forEach(input => {
-      input.addEventListener('input', function() {
+    form.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', function () {
         this.style.borderColor = '';
         this.style.boxShadow = '';
       });

@@ -210,38 +210,36 @@
       </p>
 
       <div class="form-card reveal">
-        <form id="founding-form" novalidate>
+        <form id="contactForm">
           <div class="form-row">
             <div class="form-group">
-              <label for="field-prenom">Prénom <span>*</span></label>
-              <input type="text" id="field-prenom" name="prenom" placeholder="Votre prénom" required
+              <label for="first_name">Prénom <span>*</span></label>
+              <input type="text" id="first_name" name="first_name" placeholder="Votre prénom" required
                 autocomplete="given-name" />
             </div>
             <div class="form-group">
-              <label for="field-nom">Nom <span>*</span></label>
-              <input type="text" id="field-nom" name="nom" placeholder="Votre nom" required
+              <label for="last_name">Nom <span>*</span></label>
+              <input type="text" id="last_name" name="last_name" placeholder="Votre nom" required
                 autocomplete="family-name" />
             </div>
           </div>
           <div class="form-group">
-            <label for="field-email">Adresse Email <span>*</span></label>
+            <label for="email">Adresse Email <span>*</span></label>
             <div class="form-icon-group">
-              <input type="email" id="field-email" name="email" placeholder="votre@email.com" required
-                autocomplete="email" />
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required autocomplete="email" />
             </div>
           </div>
           <div class="form-group">
-            <label for="field-phone">Téléphone WhatsApp <span>*</span></label>
+            <label for="phone_number">Téléphone WhatsApp <span>*</span></label>
             <div class="form-icon-group">
-              <input type="tel" id="field-phone" name="phone" placeholder="+212 6XX XXX XXX" required
+              <input type="tel" id="phone_number" name="phone_number" placeholder="+212 6XX XXX XXX" required
                 autocomplete="tel" />
             </div>
           </div>
           <div class="form-group">
-            <label for="field-pseudo">Pseudo Instagram ou TikTok <span>*</span></label>
+            <label for="tiktok">Pseudo ou lien TikTok <span>*</span></label>
             <div class="form-icon-group">
-              <span class="field-icon">@</span>
-              <input type="text" id="field-pseudo" name="pseudo" placeholder="@votre_pseudo" required />
+              <input type="text" id="tiktok" name="tiktok" placeholder="votre_pseudo ou lien TikTok" required />
             </div>
           </div>
           <button type="submit" class="btn-cta" id="submit-btn">
@@ -305,13 +303,23 @@
 
   <!-- 6b. CALL TO ACTION — ET SI VOTRE HISTOIRE... -->
   <section id="story-cta" class="story-cta-section">
+    <!-- Top-right sticker: box_burgers (visible on all devices except phones) -->
+    <div class="story-cta-sticker story-cta-sticker--tr" aria-hidden="true">
+      <img src="images/stickers/burger_box.svg" alt="" />
+    </div>
+
+    <!-- Bottom-left sticker: chips (visible on all devices except phones) -->
+    <div class="story-cta-sticker story-cta-sticker--bl" aria-hidden="true">
+      <img src="images/stickers/chips_white.svg" alt="" />
+    </div>
+
     <div class="story-cta-inner reveal">
       <h2 class="story-cta-title">
         Et si votre histoire<br />
         commençait avec la nôtre&nbsp;?
       </h2>
       <a href="#formulaire" class="btn-hero-action story-cta-btn">
-        <span>Je réserve ma place<br />de founding member !</span>
+        <span>Je réserve ma place <br class="story-cta-br" />de founding member !</span>
         <img src="images/Arrow.svg" class="btn-arrow-img" aria-hidden="true" alt="" />
       </a>
     </div>
@@ -331,8 +339,10 @@
         </div>
         <div class="footer-col">
           <h4>Rejoignez la Communauté</h4>
-          <a href="https://instagram.com/GreenComptoir" target="_blank" rel="noopener noreferrer" class="social-link">Instagram — @GreenComptoir</a>
-          <a href="https://tiktok.com/@GreenComptoir" target="_blank" rel="noopener noreferrer" class="social-link">TikTok — @GreenComptoir</a>
+          <a href="https://instagram.com/GreenComptoir" target="_blank" rel="noopener noreferrer"
+            class="social-link">Instagram — @GreenComptoir</a>
+          <a href="https://tiktok.com/@GreenComptoir" target="_blank" rel="noopener noreferrer"
+            class="social-link">TikTok — @GreenComptoir</a>
         </div>
         <div class="footer-col">
           <h4>Où nous trouver</h4>
@@ -347,6 +357,23 @@
   </footer>
 
   <script src="script.js" defer></script>
+
+  <!-- MODAL FEEDBACK (Success & Error) -->
+  <div id="form-modal" class="form-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="form-modal-backdrop" id="modal-backdrop"></div>
+    <div class="form-modal-dialog">
+      <button type="button" class="form-modal-close" id="modal-close-btn" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="form-modal-icon" id="modal-icon"></div>
+      <h3 class="form-modal-title" id="modal-title"></h3>
+      <p class="form-modal-message" id="modal-message"></p>
+      <button type="button" class="btn-cta form-modal-btn" id="modal-action-btn">Compris !</button>
+    </div>
+  </div>
 </body>
 
 </html>
