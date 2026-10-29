@@ -36,31 +36,31 @@
     </p>
   </div>
 
-  <!-- 2. HERO (Full-screen with left-aligned content & chips top-right) -->
+  <!-- 2. HERO -->
   <section id="hero">
 
-    <!-- Chips image — top right quadrant -->
-    <div class="hero-sticker hero-sticker--chips" data-parallax="0.04">
-      <img src="images/stickers/chips.svg" alt="" aria-hidden="true" />
+    <!-- Top-left sticker: chips_opaque.svg -->
+    <div class="hero-sticker hero-sticker--chips-tl" aria-hidden="true">
+      <img src="images/stickers/chips_opaque.svg" alt="" />
     </div>
 
+    <!-- Bottom-right sticker: burger_box_opaque.svg -->
+    <div class="hero-sticker hero-sticker--burger-br" aria-hidden="true">
+      <img src="images/stickers/burger_box_opaque.svg" alt="" />
+    </div>
 
+    <!-- Top-right: Logo -->
+    <div class="hero-top-logo">
+      <img src="images/hero_logo.svg" alt="Green Comptoir" class="hero-logo" />
+    </div>
 
-    <!-- Left-aligned content -->
+    <!-- Bottom-left content (compact) -->
     <div class="hero-left-content">
-      <!-- Logo -->
-      <div class="hero-logo-wrap">
-        <img src="images/Logo.svg" alt="Green Comptoir" class="hero-logo" />
-      </div>
-
-      <!-- Headlines -->
-      <h1 class="hero-title-h1">
-        Le fast-food healthy arrive enfin à Marrakech.
+      <!-- Headline & Subheadline merged in the same paragraph -->
+      <h1 class="hero-title-merged">
+        Le fast-food healthy arrive enfin à Marrakech. Devenez l'un de nos <span class="hero-hl-orange">20 'Founding
+          Members'</span> et vivez l'expérience en avant-première.
       </h1>
-      <p class="hero-title-h2">
-        Devenez l'un de nos <span class="hero-hl-orange">20 'Founding Members'</span> et vivez l'expérience en
-        avant-première.
-      </p>
 
       <!-- CTAs -->
       <div class="hero-cta-wrapper">
@@ -239,7 +239,8 @@
           <div class="form-group">
             <label for="instagram">Pseudo ou lien Instagram <span>*</span></label>
             <div class="form-icon-group">
-              <input type="text" id="instagram" name="instagram" placeholder="votre_pseudo ou lien Instagram" required />
+              <input type="text" id="instagram" name="instagram" placeholder="votre_pseudo ou lien Instagram"
+                required />
             </div>
           </div>
           <button type="submit" class="btn-cta" id="submit-btn">
@@ -339,10 +340,44 @@
         </div>
         <div class="footer-col">
           <h4>Rejoignez la Communauté</h4>
+          <div class="social-links-wrap">
           <a href="https://www.instagram.com/greencomptoir" target="_blank" rel="noopener noreferrer"
-            class="social-link">Instagram — @greencomptoir</a>
+            class="social-link">
+            <svg class="social-icon social-icon--instagram" viewBox="0 0 32 32" width="30" height="30"
+              aria-hidden="true">
+              <defs>
+                <radialGradient id="igGradient" cx="20%" cy="110%" r="120%">
+                  <stop offset="0%" stop-color="#fdf497" />
+                  <stop offset="10%" stop-color="#fdf497" />
+                  <stop offset="45%" stop-color="#fd5949" />
+                  <stop offset="60%" stop-color="#d6249f" />
+                  <stop offset="90%" stop-color="#285aeb" />
+                </radialGradient>
+              </defs>
+              <rect width="32" height="32" rx="8" fill="url(#igGradient)" />
+              <rect x="7" y="7" width="18" height="18" rx="5" fill="none" stroke="#ffffff" stroke-width="2" />
+              <circle cx="16" cy="16" r="4.2" fill="none" stroke="#ffffff" stroke-width="2" />
+              <circle cx="21" cy="11" r="1.2" fill="#ffffff" />
+            </svg>
+            <span>Instagram — @greencomptoir</span>
+          </a>
           <a href="https://www.tiktok.com/@green.comptoir" target="_blank" rel="noopener noreferrer"
-            class="social-link">TikTok — @green.comptoir</a>
+            class="social-link">
+            <svg class="social-icon social-icon--tiktok" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#010101" />
+              <path
+                d="M19.7 9.8a4.6 4.6 0 0 1-3.6-4.1V2h-3.3v13.1a2.8 2.8 0 0 1-5 1.7 2.8 2.8 0 0 1 2.2-4.4c.3 0 .6 0 .8.1V8.9a6.1 6.1 0 0 0-.8-.1A6.1 6.1 0 0 0 3.9 14.9a6.1 6.1 0 0 0 6.1 6.1 6.1 6.1 0 0 0 6.1-6.1V8.2a7.9 7.9 0 0 0 4.7 1.6V6.5a4.6 4.6 0 0 1-1.1-.2z"
+                fill="#25F4EE" transform="translate(4.2, 3.4)" />
+              <path
+                d="M19.7 9.8a4.6 4.6 0 0 1-3.6-4.1V2h-3.3v13.1a2.8 2.8 0 0 1-5 1.7 2.8 2.8 0 0 1 2.2-4.4c.3 0 .6 0 .8.1V8.9a6.1 6.1 0 0 0-.8-.1A6.1 6.1 0 0 0 3.9 14.9a6.1 6.1 0 0 0 6.1 6.1 6.1 6.1 0 0 0 6.1-6.1V8.2a7.9 7.9 0 0 0 4.7 1.6V6.5a4.6 4.6 0 0 1-1.1-.2z"
+                fill="#FE2C55" transform="translate(5.8, 4.6)" />
+              <path
+                d="M19.7 9.8a4.6 4.6 0 0 1-3.6-4.1V2h-3.3v13.1a2.8 2.8 0 0 1-5 1.7 2.8 2.8 0 0 1 2.2-4.4c.3 0 .6 0 .8.1V8.9a6.1 6.1 0 0 0-.8-.1A6.1 6.1 0 0 0 3.9 14.9a6.1 6.1 0 0 0 6.1 6.1 6.1 6.1 0 0 0 6.1-6.1V8.2a7.9 7.9 0 0 0 4.7 1.6V6.5a4.6 4.6 0 0 1-1.1-.2z"
+                fill="#FFFFFF" transform="translate(5, 4)" />
+            </svg>
+            <span>TikTok — @green.comptoir</span>
+          </a>
+          </div>
         </div>
         <div class="footer-col">
           <h4>Où nous trouver</h4>
@@ -363,7 +398,8 @@
     <div class="form-modal-backdrop" id="modal-backdrop"></div>
     <div class="form-modal-dialog">
       <button type="button" class="form-modal-close" id="modal-close-btn" aria-label="Fermer">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>

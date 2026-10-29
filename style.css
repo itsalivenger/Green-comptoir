@@ -186,7 +186,12 @@ body {
 }
 
 /* Global Headings & Buttons — Bonmikku */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Bonmikku', sans-serif;
 }
 
@@ -274,51 +279,42 @@ body::before {
   letter-spacing: 0.02em;
 }
 
-/* 2. HERO — FULL-SCREEN LEFT-ALIGNED */
+/* 2. HERO — BOTTOM-LEFT ALIGNED, TOP-RIGHT LOGO */
 #hero {
   margin-top: 0;
   min-height: calc(100vh - 42px);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
-  background: var(--primary) url('images/background.svg') no-repeat center center / cover;
+  background-color: var(--primary);
   position: relative;
   overflow: hidden;
   z-index: 1;
   font-family: 'Bonmikku', sans-serif;
 }
 
-/* Left-aligned content block - enhanced spacing to spread vertically */
-.hero-left-content {
-  position: relative;
-  z-index: 6;
-  max-width: 70%;
-  width: 100%;
+/* Logo — top-right quadrant (larger & prominent) */
+.hero-top-logo {
+  position: absolute;
+  top: clamp(52px, 7vh, 80px);
+  right: clamp(28px, 4.5vw, 64px);
+  z-index: 10;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(28px, 3.8vh, 42px);
-  padding: clamp(64px, 8.5vh, 96px) clamp(48px, 5.5vw, 76px);
-}
-
-/* Logo inside left content */
-.hero-logo-wrap {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 12px;
+  align-items: center;
 }
 
 .hero-logo {
-  height: clamp(72px, 7vw, 96px);
+  height: clamp(140px, 16vw, 220px);
   width: auto;
+  max-width: clamp(340px, 40vw, 520px);
   display: block;
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.28));
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.32));
 }
 
 /* Sticker base */
 .hero-sticker {
   position: absolute;
-  z-index: 4;
+  z-index: 1;
   pointer-events: none;
   will-change: transform;
 }
@@ -326,9 +322,34 @@ body::before {
 .hero-sticker img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
   will-change: transform;
+}
+
+/* Top-left sticker: chips_opaque with zero-gravity float */
+.hero-sticker--chips-tl {
+  top: 0;
+  left: 0;
+  width: clamp(280px, 34vw, 540px);
+  max-width: 50vw;
+}
+
+.hero-sticker--chips-tl img {
+  animation: floatSpace1 8s ease-in-out infinite;
+}
+
+/* Bottom-right sticker: burger_box_opaque with zero-gravity float */
+.hero-sticker--burger-br {
+  bottom: 0;
+  right: 0;
+  width: clamp(280px, 35vw, 560px);
+  max-width: 52vw;
+}
+
+.hero-sticker--burger-br img {
+  animation: floatSpace2 8s ease-in-out infinite;
+  animation-delay: -2s;
 }
 
 /* Zero-gravity space floating animations for stickers */
@@ -392,51 +413,30 @@ body::before {
   }
 }
 
-/* Chips — top-right quadrant: horizontal orientation */
-.hero-sticker--chips {
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 50%;
+/* Bottom-left content block — compact spacing */
+.hero-left-content {
+  position: relative;
+  z-index: 6;
+  max-width: clamp(580px, 62vw, 920px);
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(225deg);
-  z-index: 4;
-  transition: transform 0.2s ease-out;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: clamp(96px, 12vh, 120px) clamp(36px, 5vw, 76px) clamp(44px, 6vh, 68px);
 }
 
-.hero-sticker--chips img {
-  width: clamp(320px, 42vw, 600px);
-  height: clamp(320px, 42vw, 600px);
-  object-fit: contain;
-  animation: floatSpace1 7s ease-in-out infinite;
-  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.35));
-}
-
-
-/* Hero headings — both titles share the same size and spread comfortably */
-.hero-title-h1 {
+/* Merged Headline in one single paragraph — no gap/spacing */
+.hero-title-merged {
   font-family: 'Bonmikku', sans-serif;
-  font-size: clamp(1.65rem, 3.2vw, 2.95rem);
-  font-weight: 900;
-  line-height: 1.22;
+  font-size: clamp(1.45rem, 2.75vw, 2.45rem);
+  font-weight: 800;
+  line-height: 1.25;
   color: var(--white);
   letter-spacing: -0.01em;
   margin: 0;
   text-transform: uppercase;
-  max-width: 960px;
-}
-
-.hero-title-h2 {
-  font-family: 'Bonmikku', sans-serif;
-  font-size: clamp(1.6rem, 3.0vw, 2.75rem);
-  font-weight: 700;
-  line-height: 1.28;
-  color: rgba(229, 240, 249, 0.88);
-  margin: 0;
-  text-transform: uppercase;
-  max-width: 960px;
+  max-width: 920px;
 }
 
 .hero-hl-green {
@@ -455,13 +455,13 @@ body::before {
   background-clip: text;
 }
 
-/* Hero CTA row */
+/* Hero CTA row — compact margin */
 .hero-cta-wrapper {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
-  margin-top: 14px;
+  margin-top: 8px;
 }
 
 /* Primary button — wide accent red with right arrow image */
@@ -1549,7 +1549,7 @@ body::before {
 }
 
 .footer-col p,
-.footer-col a {
+.footer-col a:not(.social-link) {
   font-size: 0.93rem;
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.72);
@@ -1557,26 +1557,66 @@ body::before {
   display: block;
 }
 
-.footer-col a:hover {
+.footer-col a:not(.social-link):hover {
   color: var(--light-green);
 }
 
+.social-links-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
 .social-link {
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 10px 18px;
-  transition: background 0.2s, border-color 0.2s;
-  margin-bottom: 10px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  margin-bottom: 12px;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.social-link span {
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+  transition: color 0.2s ease;
 }
 
 .social-link:hover {
   background: rgba(153, 193, 183, 0.2);
   border-color: var(--light-green);
-  color: var(--light-green) !important;
+  transform: translateY(-2px);
+}
+
+.social-link:hover span {
+  color: var(--light-green);
+}
+
+.social-icon {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  flex-shrink: 0;
+  display: block;
+  border-radius: 7px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.social-link:hover .social-icon {
+  transform: scale(1.1);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.35);
 }
 
 .footer-bottom {
@@ -1637,6 +1677,7 @@ body::before {
 
 /* 1. TABLET & LAPTOP (max-width: 960px) */
 @media(max-width: 960px) {
+
   /* 1. Urgency Bar */
   .urgency-text {
     gap: 10px;
@@ -1646,30 +1687,35 @@ body::before {
   /* 2. Hero */
   #hero {
     min-height: auto;
-    padding: 20px 0 40px;
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .hero-top-logo {
+    top: 24px;
+    right: 28px;
+  }
+
+  .hero-logo {
+    height: clamp(110px, 14vw, 160px);
   }
 
   .hero-left-content {
-    max-width: 75%;
-    padding: 50px 32px 50px 40px;
-    gap: 20px;
+    max-width: 82%;
+    padding: 96px 28px 40px 36px;
+    gap: 14px;
   }
 
-  .hero-sticker--chips {
-    top: -10px;
-    right: -10px;
-    width: 45%;
-    height: 45%;
-    opacity: 0.85;
+  .hero-sticker--chips-tl {
+    width: clamp(200px, 30vw, 320px);
   }
 
-  .hero-sticker--chips img {
-    width: clamp(240px, 32vw, 360px);
-    height: clamp(240px, 32vw, 360px);
+  .hero-sticker--burger-br {
+    width: clamp(220px, 32vw, 360px);
   }
 
-  .hero-title-h1,
-  .hero-title-h2 {
+  .hero-title-merged {
+    font-size: clamp(1.35rem, 3.2vw, 2.05rem);
     max-width: 100%;
   }
 
@@ -1793,6 +1839,7 @@ body::before {
 
 /* 2. MOBILE STANDARD & COMPACT (max-width: 680px) */
 @media(max-width: 680px) {
+
   /* 1. Urgency Bar */
   #urgency-bar {
     padding: 8px 12px;
@@ -1813,42 +1860,37 @@ body::before {
   /* 2. Hero */
   #hero {
     min-height: auto;
-    padding: 20px 0 40px;
+    padding: 0;
     align-items: flex-start;
+  }
+
+  .hero-top-logo {
+    top: 18px;
+    right: 18px;
+  }
+
+  .hero-logo {
+    height: clamp(84px, 20vw, 126px);
   }
 
   .hero-left-content {
     max-width: 100%;
-    padding: 32px 18px 36px;
-    gap: 20px;
+    padding: 82px 18px 32px;
+    gap: 12px;
   }
 
-  .hero-logo {
-    height: clamp(50px, 12vw, 64px);
+  .hero-sticker--chips-tl {
+    width: clamp(150px, 42vw, 210px);
   }
 
-  .hero-sticker--chips {
-    top: 10px;
-    right: -25px;
-    width: clamp(170px, 44vw, 230px);
-    height: clamp(170px, 44vw, 230px);
-    opacity: 0.35;
-    pointer-events: none;
+  .hero-sticker--burger-br {
+    width: clamp(170px, 46vw, 230px);
   }
 
-  .hero-sticker--chips img {
-    width: 100%;
-    height: 100%;
-  }
-
-  .hero-title-h1 {
-    font-size: clamp(1.35rem, 5.8vw, 1.85rem);
-    line-height: 1.22;
-  }
-
-  .hero-title-h2 {
-    font-size: clamp(1.35rem, 5.8vw, 1.85rem);
+  .hero-title-merged {
+    font-size: clamp(1.22rem, 5.2vw, 1.68rem);
     line-height: 1.25;
+    max-width: 100%;
   }
 
   .hero-cta-wrapper {
@@ -2076,13 +2118,31 @@ body::before {
     gap: 4px 6px;
   }
 
-  .hero-left-content {
-    padding: 24px 14px 28px;
+  .hero-top-logo {
+    top: 14px;
+    right: 14px;
   }
 
-  .hero-title-h1,
-  .hero-title-h2 {
-    font-size: 1.3rem;
+  .hero-logo {
+    height: 78px;
+  }
+
+  .hero-left-content {
+    padding: 72px 14px 24px;
+    gap: 10px;
+  }
+
+  .hero-title-merged {
+    font-size: 1.18rem;
+    line-height: 1.25;
+  }
+
+  .hero-sticker--chips-tl {
+    width: clamp(120px, 38vw, 160px);
+  }
+
+  .hero-sticker--burger-br {
+    width: clamp(140px, 42vw, 180px);
   }
 
   .timeline-node-col {
@@ -2213,8 +2273,15 @@ body::before {
 }
 
 @keyframes modalIconPop {
-  0% { transform: scale(0.4); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .form-modal.modal--success .form-modal-icon {
