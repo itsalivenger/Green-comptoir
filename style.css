@@ -175,6 +175,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -182,6 +184,8 @@ body {
   background-color: var(--white);
   color: var(--dark);
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
   position: relative;
 }
 
@@ -209,12 +213,9 @@ button,
 body::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('images/Pattern.png');
   background-repeat: repeat;
   background-size: 400px;
@@ -854,6 +855,7 @@ body::before {
   padding: 100px 40px;
   background: var(--primary) url('images/background.svg') no-repeat center center / cover;
   position: relative;
+  overflow: hidden;
   z-index: 1;
 }
 
@@ -980,6 +982,7 @@ body::before {
   padding: 100px 40px;
   background: var(--secondary);
   position: relative;
+  overflow: hidden;
   z-index: 1;
 }
 
@@ -1211,6 +1214,7 @@ body::before {
   padding: 70px 40px 50px;
   background: var(--primary) url('images/background.svg') no-repeat center center / cover;
   position: relative;
+  overflow: hidden;
   z-index: 1;
 }
 
@@ -2102,6 +2106,21 @@ body::before {
     box-shadow: -5px 5px 0px var(--primary);
   }
 
+  /* Form stickers constrained on mobile */
+  .form-sticker--tl {
+    top: -28px;
+    left: -10px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .form-sticker--br {
+    bottom: -20px;
+    right: -10px;
+    width: 75px;
+    height: 75px;
+  }
+
   .form-group {
     margin-bottom: 14px;
   }
@@ -2420,6 +2439,23 @@ body::before {
    LARGEST SCREENS (Mac Displays, Retina 5K, 4K, 1600px+)
    ========================================================================== */
 @media (min-width: 1600px) {
+
+  /* 1. Urgency Bar */
+  #urgency-bar {
+    padding: 12px 24px;
+  }
+
+  .urgency-text {
+    font-size: 1.15rem;
+    gap: 14px;
+  }
+
+  .urgency-tilde {
+    width: 36px;
+    height: 8px;
+  }
+
+  /* 2. Hero */
   #hero {
     min-height: calc(100vh - 46px);
     align-items: flex-end; /* opposed corner: bottom left */
@@ -2487,21 +2523,259 @@ body::before {
     width: clamp(380px, 27vw, 680px);
     max-width: 44vw;
   }
+
+  /* Section Commons */
+  .section-label {
+    font-size: 1rem;
+    letter-spacing: 0.16em;
+  }
+
+  /* 3. Privileges (Timeline) */
+  #privileges {
+    padding: 120px 50px 110px;
+  }
+
+  .privileges-inner {
+    max-width: 1250px;
+  }
+
+  .privileges-title {
+    font-size: clamp(2.6rem, 2.5vw, 3.5rem);
+    margin-bottom: 70px;
+  }
+
+  .timeline {
+    max-width: 1050px;
+    margin: 0 auto 64px;
+  }
+
+  .timeline-track-bg,
+  .timeline-progress-bar {
+    right: 48px;
+    width: 5px;
+    top: 36px;
+    bottom: 36px;
+  }
+
+  .timeline-item {
+    gap: 36px;
+    margin-bottom: 42px;
+  }
+
+  .timeline-node-col {
+    width: 100px;
+  }
+
+  .timeline-node {
+    width: 78px;
+    height: 78px;
+    font-size: 2.7rem;
+    border-radius: 14px;
+  }
+
+  .timeline-card {
+    padding: 36px 44px;
+    border-radius: 42px;
+  }
+
+  .timeline-card-header {
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .timeline-card-header .t-icon {
+    font-size: 1.9rem;
+  }
+
+  .timeline-card h3 {
+    font-size: 1.55rem;
+  }
+
+  .timeline-card p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
+  .timeline-warning-box {
+    max-width: 1050px;
+    padding: 26px 36px;
+    border-radius: 20px;
+  }
+
+  .timeline-warning-box p {
+    font-size: 1.15rem;
+  }
+
+  /* 4. Conditions */
+  #conditions {
+    padding: 120px 50px;
+  }
+
+  .conditions-inner {
+    max-width: 1150px;
+  }
+
+  .conditions-header-box {
+    padding: 44px 50px;
+    border-radius: 26px;
+    margin-bottom: 40px;
+  }
+
+  .conditions-header-box .section-title {
+    font-size: clamp(2.2rem, 2.3vw, 3.2rem);
+    margin-bottom: 16px;
+  }
+
+  .conditions-header-box .conditions-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
+  .conditions-list {
+    gap: 26px;
+  }
+
+  .cond-item {
+    padding: 30px 36px;
+    border-radius: 42px;
+    gap: 28px;
+  }
+
+  .cond-number {
+    min-width: 68px;
+    height: 68px;
+    font-size: 1.55rem;
+    border-radius: 18px;
+  }
+
+  .cond-content h4 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .cond-content p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  /* 5. Formulaire */
+  #form-section {
+    padding: 120px 50px;
+  }
+
+  .form-inner {
+    max-width: 1150px;
+  }
+
+  .form-inner .section-title {
+    font-size: clamp(2.8rem, 3.2vw, 4.2rem);
+    margin-bottom: 16px;
+  }
+
+  .form-desc {
+    font-size: 1.2rem;
+    margin-bottom: 56px;
+  }
+
+  .form-card-wrap {
+    max-width: 1000px;
+  }
+
+  .form-card {
+    padding: 58px 54px;
+    border-radius: 30px;
+  }
+
+  .form-row {
+    gap: 24px;
+  }
+
+  .form-group {
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+
+  .form-group label {
+    font-size: 1.05rem;
+  }
+
+  .form-group input {
+    padding: 17px 20px;
+    font-size: 1.15rem;
+    border-radius: 14px;
+  }
+
+  .form-icon-group input {
+    padding-left: 54px;
+  }
+
+  .form-icon-group .field-icon {
+    left: 18px;
+    font-size: 1.2rem;
+  }
+
+  .btn-cta,
+  #submit-btn {
+    padding: 24px 36px;
+    font-size: 1.45rem;
+    border-radius: 18px;
+  }
+
+  .form-reassurance {
+    font-size: 1.02rem;
+  }
+
+  .form-sticker--tl {
+    width: 185px;
+    height: 185px;
+    top: -75px;
+    left: -80px;
+  }
+
+  .form-sticker--br {
+    width: 175px;
+    height: 175px;
+    bottom: -50px;
+    right: -55px;
+  }
 }
 
+/* ==========================================================================
+   ULTRA-WIDE & 2560px SCREENS (2560 x 1121, 2560 x 1440, 4K)
+   ========================================================================== */
 @media (min-width: 2000px) {
+
+  /* 1. Urgency Bar */
+  #urgency-bar {
+    padding: 14px 32px;
+  }
+
+  .urgency-text {
+    font-size: 1.32rem;
+    gap: 18px;
+  }
+
+  .urgency-tilde {
+    width: 44px;
+    height: 10px;
+  }
+
+  /* 2. Hero */
   .hero-logo {
     height: clamp(320px, 18vmin, 460px);
     max-width: 880px;
   }
 
   .hero-left-content {
-    max-width: 1400px;
+    max-width: 1450px;
+    padding: 100px 90px 70px;
+    gap: 38px;
   }
 
   .hero-title-merged {
     font-size: clamp(3.2rem, 2.6vw, 4.4rem);
-    max-width: 1300px;
+    max-width: 1350px;
+    line-height: 1.22;
   }
 
   .btn-hero-primary {
@@ -2510,9 +2784,242 @@ body::before {
     border-radius: 32px;
   }
 
+  .btn-hero-primary .btn-arrow-img {
+    width: 32px;
+    height: 32px;
+  }
+
   .btn-hero-secondary {
     font-size: 1.45rem;
     padding: 24px 44px;
     border-radius: 32px;
   }
+
+  .btn-hero-secondary .btn-plus-img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hero-sticker--chips-tl {
+    width: clamp(450px, 26vw, 750px);
+  }
+
+  .hero-sticker--burger-br {
+    width: clamp(480px, 28vw, 800px);
+  }
+
+  /* Section Commons */
+  .section-label {
+    font-size: 1.22rem;
+  }
+
+  /* 3. Privileges (Timeline) */
+  #privileges {
+    padding: 150px 70px 140px;
+  }
+
+  .privileges-inner {
+    max-width: 1550px;
+  }
+
+  .privileges-title {
+    font-size: 4rem;
+    margin-bottom: 90px;
+  }
+
+  .timeline {
+    max-width: 1350px;
+    margin: 0 auto 80px;
+  }
+
+  .timeline-track-bg,
+  .timeline-progress-bar {
+    right: 58px;
+    width: 6px;
+    top: 44px;
+    bottom: 44px;
+  }
+
+  .timeline-item {
+    gap: 48px;
+    margin-bottom: 52px;
+  }
+
+  .timeline-node-col {
+    width: 122px;
+  }
+
+  .timeline-node {
+    width: 96px;
+    height: 96px;
+    font-size: 3.4rem;
+    border-radius: 18px;
+  }
+
+  .timeline-card {
+    padding: 44px 54px;
+    border-radius: 48px;
+  }
+
+  .timeline-card-header {
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+
+  .timeline-card-header .t-icon {
+    font-size: 2.4rem;
+  }
+
+  .timeline-card h3 {
+    font-size: 1.95rem;
+  }
+
+  .timeline-card p {
+    font-size: 1.48rem;
+    line-height: 1.72;
+  }
+
+  .timeline-warning-box {
+    max-width: 1350px;
+    padding: 32px 46px;
+    border-radius: 24px;
+  }
+
+  .timeline-warning-box p {
+    font-size: 1.38rem;
+  }
+
+  /* 4. Conditions */
+  #conditions {
+    padding: 150px 70px;
+  }
+
+  .conditions-inner {
+    max-width: 1450px;
+  }
+
+  .conditions-header-box {
+    padding: 54px 64px;
+    border-radius: 32px;
+    margin-bottom: 50px;
+  }
+
+  .conditions-header-box .section-title {
+    font-size: 3.4rem;
+    margin-bottom: 20px;
+  }
+
+  .conditions-header-box .conditions-subtitle {
+    font-size: 1.48rem;
+    line-height: 1.72;
+  }
+
+  .conditions-list {
+    gap: 32px;
+  }
+
+  .cond-item {
+    padding: 38px 46px;
+    border-radius: 48px;
+    gap: 36px;
+  }
+
+  .cond-number {
+    min-width: 84px;
+    height: 84px;
+    font-size: 1.95rem;
+    border-radius: 22px;
+  }
+
+  .cond-content h4 {
+    font-size: 1.65rem;
+    margin-bottom: 10px;
+  }
+
+  .cond-content p {
+    font-size: 1.42rem;
+    line-height: 1.72;
+  }
+
+  /* 5. Formulaire */
+  #form-section {
+    padding: 150px 70px;
+  }
+
+  .form-inner {
+    max-width: 1450px;
+  }
+
+  .form-inner .section-title {
+    font-size: 4.4rem;
+    margin-bottom: 20px;
+  }
+
+  .form-desc {
+    font-size: 1.45rem;
+    margin-bottom: 68px;
+  }
+
+  .form-card-wrap {
+    max-width: 1250px;
+  }
+
+  .form-card {
+    padding: 72px 68px;
+    border-radius: 36px;
+  }
+
+  .form-row {
+    gap: 32px;
+  }
+
+  .form-group {
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .form-group label {
+    font-size: 1.25rem;
+  }
+
+  .form-group input {
+    padding: 21px 26px;
+    font-size: 1.38rem;
+    border-radius: 16px;
+  }
+
+  .form-icon-group input {
+    padding-left: 68px;
+  }
+
+  .form-icon-group .field-icon {
+    left: 24px;
+    font-size: 1.5rem;
+  }
+
+  .btn-cta,
+  #submit-btn {
+    padding: 28px 44px;
+    font-size: 1.75rem;
+    border-radius: 22px;
+  }
+
+  .form-reassurance {
+    font-size: 1.22rem;
+  }
+
+  .form-sticker--tl {
+    width: 235px;
+    height: 235px;
+    top: -95px;
+    left: -100px;
+  }
+
+  .form-sticker--br {
+    width: 225px;
+    height: 225px;
+    bottom: -65px;
+    right: -70px;
+  }
 }
+
