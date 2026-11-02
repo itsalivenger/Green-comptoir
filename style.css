@@ -175,7 +175,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
 }
 
@@ -183,7 +183,7 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--white);
   color: var(--dark);
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   width: 100%;
   position: relative;
@@ -229,6 +229,7 @@ body::before {
 
 /* 1. URGENCY BAR (Sticky / Fixe au scroll sans décalage) */
 #urgency-bar {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   left: 0;
@@ -285,7 +286,8 @@ body::before {
   margin-top: 0;
   min-height: calc(100vh - 42px);
   display: flex;
-  align-items: flex-end;       /* anchored to bottom left */
+  align-items: flex-end;
+  /* anchored to bottom left */
   justify-content: flex-start;
   background-color: var(--primary);
   position: relative;
@@ -298,14 +300,16 @@ body::before {
 .hero-top-logo {
   position: absolute;
   top: clamp(28px, 4.5vh, 60px);
-  right: clamp(28px, 4.5vw, 70px);   /* anchored to top-right corner */
+  right: clamp(28px, 4.5vw, 70px);
+  /* anchored to top-right corner */
   z-index: 10;
   display: flex;
   align-items: center;
 }
 
 .hero-logo {
-  height: clamp(165px, 18vmin, 240px);  /* a bit bigger */
+  height: clamp(165px, 18vmin, 240px);
+  /* a bit bigger */
   width: auto;
   max-width: clamp(340px, 34vw, 520px);
   display: block;
@@ -418,7 +422,8 @@ body::before {
 .hero-left-content {
   position: relative;
   z-index: 6;
-  max-width: clamp(620px, 58vw, 920px);  /* spread out across bottom left */
+  max-width: clamp(620px, 58vw, 920px);
+  /* spread out across bottom left */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -430,7 +435,8 @@ body::before {
 /* Merged Headline in one single paragraph — spread out */
 .hero-title-merged {
   font-family: 'Bonmikku', sans-serif;
-  font-size: clamp(1.45rem, 2.4vw, 2.35rem);   /* spread out and readable */
+  font-size: clamp(1.45rem, 2.4vw, 2.35rem);
+  /* spread out and readable */
   font-weight: 800;
   line-height: 1.24;
   color: var(--white);
@@ -450,7 +456,7 @@ body::before {
 
 .hero-hl-orange {
   color: #f97316;
-  background: linear-gradient(135deg, #f97316, #fb923c);
+  background: #f97316;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -651,10 +657,9 @@ body::before {
 }
 
 .privileges-title .fomo-highlight {
-  background: linear-gradient(90deg, #d4af37, #f97316);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #f97316;
+  background: none;
+  -webkit-text-fill-color: #f97316;
 }
 
 /* 3. TIMELINE — CONTINUOUS LINE WITH ROUNDED BACKGROUND NUMBERS */
@@ -1909,7 +1914,8 @@ body::before {
     box-sizing: border-box;
     align-items: center;
     flex-direction: column;
-    justify-content: center; /* vertically centre the whole column */
+    justify-content: center;
+    /* vertically centre the whole column */
   }
 
   /* Logo: out of absolute flow, centred, ~85% width */
@@ -2458,7 +2464,8 @@ body::before {
   /* 2. Hero */
   #hero {
     min-height: calc(100vh - 46px);
-    align-items: flex-end; /* opposed corner: bottom left */
+    align-items: flex-end;
+    /* opposed corner: bottom left */
   }
 
   /* Logo: anchored top-right, noticeably bigger */
@@ -3022,4 +3029,3 @@ body::before {
     right: -70px;
   }
 }
-
